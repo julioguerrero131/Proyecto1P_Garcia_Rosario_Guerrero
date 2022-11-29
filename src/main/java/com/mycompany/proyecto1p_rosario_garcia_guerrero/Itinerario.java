@@ -14,41 +14,45 @@ import java.util.Scanner;
  */
 public class Itinerario {
 
-    protected ArrayList<String> origen;
-    protected ArrayList<String> destino;
-    protected ArrayList<String> duracion;
-    protected ArrayList<String> horaSalida;
-    protected ArrayList<String> horaLlegada;
-    
-    Scanner sc = new Scanner(System.in);
-    
-    ArrayList<String> listaiti = new ArrayList<>();
-    ArrayList<String> codigoiti = new ArrayList<>();
-    ArrayList<String> listades = new ArrayList<>();
+    protected ArrayList<String> origen = new ArrayList<>(); //repetidos
+    protected ArrayList<String> destino = new ArrayList<>(); //repetidos
+    protected ArrayList<String> duracion = new ArrayList<>(); //repetidos
+    protected ArrayList<String> horaSalida = new ArrayList<>(); //repetidos
+    protected ArrayList<String> horaLlegada = new ArrayList<>(); //repetidos
 
+    Scanner sc = new Scanner(System.in);
+
+    ArrayList<String> lista_ori = new ArrayList<>(); // Lista de origen sin repetirse
+    ArrayList<String> codigoiti = new ArrayList<>(); // Lista de codigos de itinerarios 
+    ArrayList<String> listades = new ArrayList<>(); // Lista de destino sin repetirse
+    
+    ArrayList<String> lista_ori_copia = new ArrayList<>(); //Lista de origenes para verificacion 
+    ArrayList<String> listades_copia = new ArrayList<>();
+    
     public Itinerario() {
 
     }
 
     public Itinerario(ArrayList<String> itinerario) {
         for (int i = 1; i <= itinerario.size() - 1; i++) {
+            
             String[] lista = itinerario.get(i).split(",");
             codigoiti.add(lista[0]);
+
+            origen.add(lista[1]);
+            destino.add(lista[2]);
+            duracion.add(lista[5]);
+            horaSalida.add(lista[3]);
+            horaLlegada.add(lista[4]);
             
-            
-//            origen.add(lista[1]);
-//            destino.add(lista[2]);
-//            duracion.add(lista[3]);
-//            horaSalida.add(lista[4]);
-//            horaLlegada.add(lista[5]);
 //            System.out.println(codigoiti);
-
-
-            if (!listaiti.contains(lista[1])) {
-                listaiti.add(lista[1]);
+            if (!lista_ori.contains(lista[1])) {
+                lista_ori.add(lista[1]);
+                lista_ori_copia.add(lista[1]);
 
             } else if (!listades.contains(lista[2])) {
                 listades.add(lista[2]);
+                listades_copia.add(lista[2]);
             }
 
         }
