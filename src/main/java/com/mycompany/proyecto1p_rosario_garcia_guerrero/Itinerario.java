@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.proyecto1p_rosario_garcia_guerrero;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -26,6 +28,34 @@ public class Itinerario {
         this.duracion = duracion;
     }
 
+    public static int elegirOrigen(ArrayList<String> lista){
+        System.out.println("------ORIGEN-----");
+        int cont=1;
+        for (String o:lista){
+            System.out.println(cont +"."+o);
+            cont++;
+        }
+        Scanner sc = new Scanner(System.in); 
+        System.out.println("Elegir punto partida: ");
+        int op = sc.nextInt();
+        sc.nextLine();
+        return op;
+    }
+    public static int elegirDestino(ArrayList<String> lista){
+         System.out.println("------DESTINO-----");
+        int cont=1;
+        for (String o:lista){
+            System.out.println(cont +"."+o);
+            cont++;
+        }
+        Scanner sc = new Scanner(System.in); 
+        System.out.println("Elegir punto partida: ");
+        int op = sc.nextInt();
+        sc.nextLine();
+        return op;
+    }
+    
+    //getters y setters
     public String getCodigoItinerario() {
         return codigoItinerario;
     }
