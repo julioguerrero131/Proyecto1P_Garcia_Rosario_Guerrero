@@ -9,23 +9,22 @@ package com.mycompany.proyecto1p_rosario_garcia_guerrero;
  * @author Cliente Intel
  */
 public class Usuario {
-    private String cedula;
-    private String nombres;
-    private int edad;
-    private String mail;
-    private String user;
-    private String password;
-    private char rol;
+    protected String cedula;
+    protected String nombres;
+    protected int edad;
+    protected String mail;
+    protected String user;
+    protected String password;
+    protected char rol;
     
     public Usuario(String cedula, String nombres, int edad, String mail, String user, String password, char rol){
-    this.cedula = cedula;
-    this.nombres = nombres;
-    this.edad = edad;
-    this.mail = mail;
-    this.user = user;
-    this.password = password;
-    this.rol = rol;
-        
+        this.cedula = cedula;
+        this.nombres = nombres;
+        this.edad = edad;
+        this.mail = mail;
+        this.user = user;
+        this.password = password;
+        this.rol = rol;
     }
 
     public String getCedula() {
@@ -83,7 +82,11 @@ public class Usuario {
     public void setRol(char rol) {
         this.rol = rol;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "cedula=" + cedula + ", nombres=" + nombres + ", edad=" + edad + ", mail=" + mail + ", user=" + user + ", password=" + password + ", rol=" + rol + '}';
+    }
     
     
     
