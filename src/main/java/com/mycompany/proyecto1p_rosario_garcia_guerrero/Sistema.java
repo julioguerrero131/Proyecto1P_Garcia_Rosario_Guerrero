@@ -254,7 +254,134 @@ public class Sistema {
                     System.out.println("Fecha Llegada: "+vuelosRetornoL.get(0).getFechaLlegada());
 
                     //PASO 1
-                    int cont 
+                    System.out.println("");
+                    System.out.println("******************Paso 1*******************");
+                    System.out.println("*****************************************");
+                    System.out.println("");
+                    
+                    for (int i=0;i<vuelosIdaL.size();i++){ //VUELOS IDA
+                        System.out.println("----------------"+(i+1)+"-------------------");
+                        System.out.println(vuelosIdaL.get(i));
+                    }
+                    
+                    Scanner sc = new Scanner(System.in); 
+                    
+                    System.out.println("Eliga el vuelo de ida: ");
+                    int opVueloIda = sc.nextInt(); 
+                    sc.nextLine();
+                    
+                    while(!(opVueloIda>0 && opVueloIda<=vuelosIdaL.size())) { //valida la opcion escogida
+                        System.out.println("Elija una opcion existente:");
+                        opVueloIda = sc.nextInt();
+                        sc.nextLine();
+                    }
+                    
+                    Vuelo vueloIda = vuelosIdaL.get(opVueloIda-1); //obtener el vuelo de ida
+                    
+                    System.out.println("");
+                    System.out.println("TARIFAS:");
+                    System.out.println("");
+                    System.out.println("A.Economy (+0) \nB. Premium economy (+60)\nC. Premium (+90)");
+                    System.out.println("");
+                    System.out.println("Elije la tarifa de vuelo: ");
+                    String opTarifaIda = sc.nextLine().toUpperCase();
+                    
+                    while(!(opTarifaIda.equals("A") || opTarifaIda.equals("B") || opTarifaIda.equals("C"))) { //valida la opcion escogida
+                        System.out.println("Elija una opcion existente:");
+                        opTarifaIda = sc.nextLine().toUpperCase();
+                    }
+                    
+                    
+                    double elecciontarifa=0;
+                    
+                    TipoTarifa tipoTarifaIda = TipoTarifa.UNDEFINED; //obtener la tarifa de ida
+                    
+                    switch (opTarifaIda) {
+                    case "A":
+                        elecciontarifa=Vuelo.tarifaEconomic(vueloIda.getPrecio());
+                        tipoTarifaIda= TipoTarifa.ECONOMY;
+                        break;
+                    case "B":
+                        elecciontarifa= Vuelo.tarifaPremiumEconomy(vueloIda.getPrecio());
+                        tipoTarifaIda= TipoTarifa.PREMIUMECONOMY;
+                        break;
+                    case "C":
+                        elecciontarifa=Vuelo.tarifaPremiumBusiness(vueloIda.getPrecio());
+                        tipoTarifaIda= TipoTarifa.PREMIUMBUSINESS;
+                        break;
+                    default:
+                        break;
+                }
+                    
+                    for (int i=0;i<vuelosRetornoL.size();i++){ //VUELOS RETORNO
+                        System.out.println("----------------"+(i+1)+"-------------------");
+                        System.out.println(vuelosRetornoL.get(i));
+                    }
+                    
+                    System.out.println("Eliga el vuelo de retorno: ");
+                    int opVueloRetorno = sc.nextInt(); 
+                    sc.nextLine();
+                    
+                    while(!(opVueloRetorno>0 && opVueloRetorno<=vuelosRetornoL.size())) { //valida la opcion escogida
+                        System.out.println("Elija una opcion existente:");
+                        opVueloRetorno = sc.nextInt();
+                        sc.nextLine();
+                    }
+                    Vuelo vueloRetorno = vuelosRetornoL.get(opVueloRetorno-1);
+                    
+                    
+                    System.out.println("");
+                    System.out.println("TARIFAS:");
+                    System.out.println("");
+                    System.out.println("A.Economy (+0) \nB. Premium economy (+60)\nC. Premium (+90)");
+                    System.out.println("");
+                    System.out.println("Elije la tarifa de vuelo: ");
+                    String opTarifaRetorno = sc.nextLine().toUpperCase();
+                    
+                    while(!(opTarifaRetorno.equals("A") || opTarifaRetorno.equals("B") || opTarifaRetorno.equals("C"))) { //valida la opcion escogida
+                        System.out.println("Elija una opcion existente:");
+                        opTarifaRetorno = sc.nextLine();
+                    }
+                    
+                    
+                    TipoTarifa tipoTarifaRetorno= TipoTarifa.UNDEFINED;
+                    double elecciontarifaRetorno=0;
+                    
+                switch (opTarifaRetorno) {
+                    case "A":
+                        elecciontarifaRetorno=Vuelo.tarifaEconomic(vueloRetorno.getPrecio());
+                        tipoTarifaRetorno= tipoTarifaRetorno.ECONOMY;
+                        break;
+                    case "B":
+                        elecciontarifaRetorno= Vuelo.tarifaPremiumEconomy(vueloRetorno.getPrecio());
+                        tipoTarifaRetorno= tipoTarifaRetorno.PREMIUMECONOMY;
+                        break;
+                    case "C":
+                        elecciontarifaRetorno=Vuelo.tarifaPremiumBusiness(vueloRetorno.getPrecio());
+                        tipoTarifaRetorno= tipoTarifaRetorno.PREMIUMBUSINESS;
+                        break;                    
+                    default:
+                        break;
+                }
+                
+                System.out.println("////////////////////SUBTOTAL/////////////////////////");
+                System.out.println("El subototal de tu vuelo es: " +(elecciontarifa + elecciontarifaRetorno));
+                System.out.println("El subototal de tu vuelo es: " + elecciontarifa);
+                System.out.println("El subototal de tu vuelo es: " + elecciontarifaRetorno);
+                    //PASO 2
+                    System.out.println("");
+                    System.out.println("******************Paso 2*******************");
+                    System.out.println("*****************************************");
+                    System.out.println("");
+                    
+                    System.out.println("-----------Asientos------------");
+                    System.out.println("");
+//                    System.out.println("Para tu vuelo de ida "++"");
+
+//                    System.out.println("Para tu vuelo de ida "++"");
+
+//                    System.out.println("Para tu vuelo de ida "++"");
+                     
                 case 2:
                 case 3:
 

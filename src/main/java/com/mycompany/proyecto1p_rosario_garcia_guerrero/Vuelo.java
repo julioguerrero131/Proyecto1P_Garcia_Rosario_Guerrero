@@ -13,7 +13,7 @@ import java.util.Date;
  * @author Cliente Intel
  */
 public class Vuelo {
-    
+
     private String codigoVuelo;
     private Avion avion;
     private String fechaSalida;
@@ -21,8 +21,8 @@ public class Vuelo {
     private Itinerario itinerario;
     private double precio;
     private int precioMillas;
-    
-    public Vuelo(String codigoVuelo, String fechaSalida, String fechaLlegada, double precio, int precioMillas){
+
+    public Vuelo(String codigoVuelo, String fechaSalida, String fechaLlegada, double precio, int precioMillas) {
         this.codigoVuelo = codigoVuelo;
         this.fechaSalida = fechaSalida;
         this.fechaLlegada = fechaLlegada;
@@ -69,7 +69,7 @@ public class Vuelo {
     public void setItinerario(Itinerario itinerario) {
         this.itinerario = itinerario;
     }
-    
+
     public double getPrecio() {
         return precio;
     }
@@ -86,19 +86,27 @@ public class Vuelo {
         this.precioMillas = precioMillas;
     }
 
+    public static double tarifaEconomic(double valor) {
+        return valor;
+    }
+
+    public static double tarifaPremiumBusiness(double valor) {
+        return (valor + 90);
+    }
+
+    public static double tarifaPremiumEconomy(double valor) {
+        return (valor + 60);
+    }
+
+ 
     @Override
     public String toString() {
-        return "CODIGO:"+this.codigoVuelo+"\nHORA SALIDA:"+this.itinerario.getHoraSalida()+
-                "\nHORA LLEGADA:"+this.itinerario.getHoraLlegada()+"\nDURACION:"+this.itinerario.getDuracion()+
-                "\nAVION:"+this.avion.getCodigoAvion()+"\nPRECIO:"+this.precio+"\nCOSTO MILLAS:"+this.precioMillas;
+        return "CODIGO:" + this.codigoVuelo + "\nHORA SALIDA:" + this.itinerario.getHoraSalida()
+                + "\nHORA LLEGADA:" + this.itinerario.getHoraLlegada() + "\nDURACION:" + this.itinerario.getDuracion()
+                + "\nAVION:" + this.avion.getCodigoAvion() + "\nPRECIO:" + this.precio + "\nCOSTO MILLAS:" + this.precioMillas;
     }
-    
-    
-    
+
 }
-    
 
 //      
-
-        
 
