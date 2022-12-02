@@ -88,7 +88,9 @@ public class Vuelo {
 
     @Override
     public String toString() {
-        return "Vuelo{" + "codigoVuelo=" + codigoVuelo + ", avion=" + avion + ", fechaSalida=" + fechaSalida + ", fechaLlegada=" + fechaLlegada + ", itinerario=" + itinerario + ", precio=" + precio + ", precioMillas=" + precioMillas + '}';
+        return "CODIGO:"+this.codigoVuelo+"\nHORA SALIDA:"+this.itinerario.getHoraSalida()+
+                "\nHORA LLEGADA:"+this.itinerario.getHoraLlegada()+"\nDURACION:"+this.itinerario.getDuracion()+
+                "\nAVION:"+this.avion.getCodigoAvion()+"\nPRECIO:"+this.precio+"\nCOSTO MILLAS:"+this.precioMillas;
     }
     
     

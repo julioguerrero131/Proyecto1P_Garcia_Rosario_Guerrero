@@ -8,7 +8,7 @@ package com.mycompany.proyecto1p_rosario_garcia_guerrero;
  *
  * @author Cliente Intel
  */
-public class Usuario {
+public abstract class Usuario {
     protected String cedula;
     protected String nombres;
     protected int edad;
