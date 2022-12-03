@@ -145,7 +145,7 @@ public class Sistema {
                 for (String l : lineasClientes) {
                     String[] datosV = l.split(",");
                     if (datosV[0].equals(datosU[0])) {
-                        ClienteVIP clienteVip = new ClienteVIP(datosU[0], datosU[1], Integer.parseInt(datosU[2]), datosU[3], datosU[4], datosU[5], datosU[6].charAt(0), datosV[1], datosV[2], Integer.parseInt(datosV[3]));
+                        ClienteVIP clienteVip = new ClienteVIP(datosU[0], datosU[1], Integer.parseInt(datosU[2]), datosU[3], datosU[4], datosU[5], datosU[6].charAt(0), datosV[1], datosV[2], Integer.parseInt(datosV[3])+1000);
                         listaUsuarios.add(clienteVip);
                     }
                 }
@@ -238,228 +238,34 @@ public class Sistema {
             switch (opcion) {
                 case 1:
 
-                    ArrayList<VueloReserva> vuelosReservaL = new ArrayList();
+                    //paso 1 y 2
                     Cliente cliente = (Cliente) usuario;
-                    Reserva reserva = new Reserva(cliente, 0, vuelosReservaL);
+                    Reserva reserva = cliente.hacerReserva();
 
-                    String continuar = "S";
-                    while (!(continuar.equals("N"))) {
-                        int opcion1 = Itinerario.elegirOrigen(origenes);
-                        int opcion2 = Itinerario.elegirDestino(destinos);
-                        String origen = origenes.get(opcion1 - 1);
-                        String destino = destinos.get(opcion2 - 1);
+                    //Paso 3
+                    usuario.ingresarDatosCliente();
 
-                        ArrayList<Vuelo> vuelosIdaL = new ArrayList();
-                        ArrayList<Vuelo> vuelosRetornoL = new ArrayList();
-                        for (Vuelo v : listaVuelos) {
-                            if (origen.equals(v.getItinerario().getOrigen()) && !vuelosIdaL.contains(v)) {
-                                vuelosIdaL.add(v);
-                            }
+                    //Paso 4
+                    if (cliente instanceof ClienteVIP){
+                        ClienteVIP clientevip = (ClienteVIP) cliente;
+                        boolean val = false;
+                        while (val!=true){
+                            val = clientevip.hacerPago(reserva, clientevip.getMillas());
                         }
-                        for (Vuelo v : listaVuelos) {
-                            if (destino.equals(v.getItinerario().getOrigen()) && !vuelosRetornoL.contains(v)) {
-                                vuelosRetornoL.add(v);
-                            }
-                        }
-
-                        System.out.println("Fecha Salida: " + vuelosIdaL.get(0).getFechaSalida());
-                        System.out.println("Fecha Llegada: " + vuelosRetornoL.get(0).getFechaLlegada());
-
-                        System.out.println("");
-                        System.out.println("******************Paso 1*******************"); //PASO 1
-                        System.out.println("*****************************************");
-                        System.out.println("");
-
-                        System.out.println("----------------------Vuelos Disponibles IDA------------------------");
-
-                        for (int i = 0; i < vuelosIdaL.size(); i++) { //VUELOS IDA
-                            System.out.println("----------------" + (i + 1) + "-------------------");
-                            System.out.println(vuelosIdaL.get(i));
-                        }
-
-                        System.out.println("Eliga el vuelo de ida: ");
-                        int opVueloIda = sc.nextInt();
-                        sc.nextLine();
-
-                        while (!(opVueloIda > 0 && opVueloIda <= vuelosIdaL.size())) { //valida la opcion escogida
-                            System.out.println("Elija una opcion existente:");
-                            opVueloIda = sc.nextInt();
-                            sc.nextLine();
-                        }
-
-                        Vuelo vueloIda = vuelosIdaL.get(opVueloIda - 1); //obtener el vuelo de ida
-
-                        System.out.println("");
-                        System.out.println("TARIFAS:");
-                        System.out.println("");
-                        System.out.println("A.Economy (+0) \nB. Premium economy (+60)\nC. Premium (+90)");
-                        System.out.println("");
-                        System.out.println("Elije la tarifa de vuelo: ");
-                        String opTarifaIda = sc.nextLine().toUpperCase();
-
-                        while (!(opTarifaIda.equals("A") || opTarifaIda.equals("B") || opTarifaIda.equals("C"))) { //valida la opcion escogida
-                            System.out.println("Elija una opcion existente:");
-                            opTarifaIda = sc.nextLine().toUpperCase();
-                        }
-
-                        double precioVueloIda = 0;
-
-                        TipoTarifa tipoTarifaIda = TipoTarifa.UNDEFINED; //obtener la tarifa de ida
-
-                        switch (opTarifaIda) {
-                            case "A":
-                                precioVueloIda = vueloIda.getPrecio();
-                                tipoTarifaIda = TipoTarifa.ECONOMY;
-                                break;
-                            case "B":
-                                precioVueloIda = vueloIda.getPrecio() + 60;
-                                tipoTarifaIda = TipoTarifa.PREMIUMECONOMY;
-                                break;
-                            case "C":
-                                precioVueloIda = vueloIda.getPrecio() + 90;
-                                tipoTarifaIda = TipoTarifa.PREMIUMBUSINESS;
-                                break;
-                            default:
-                                break;
-                        }
-
-                        System.out.println("----------------------Vuelos Disponibles RETORNO------------------------");
-
-                        for (int i = 0; i < vuelosRetornoL.size(); i++) { //VUELOS RETORNO
-                            System.out.println("----------------" + (i + 1) + "-------------------");
-                            System.out.println(vuelosRetornoL.get(i));
-                        }
-
-                        System.out.println("Eliga el vuelo de retorno: ");
-                        int opVueloRetorno = sc.nextInt();
-                        sc.nextLine();
-
-                        while (!(opVueloRetorno > 0 && opVueloRetorno <= vuelosRetornoL.size())) { //valida la opcion escogida
-                            System.out.println("Elija una opcion existente:");
-                            opVueloRetorno = sc.nextInt();
-                            sc.nextLine();
-                        }
-                        Vuelo vueloRetorno = vuelosRetornoL.get(opVueloRetorno - 1);
-
-                        System.out.println("");
-                        System.out.println("TARIFAS:");
-                        System.out.println("");
-                        System.out.println("A.Economy (+0) \nB. Premium economy (+60)\nC. Premium (+90)");
-                        System.out.println("");
-                        System.out.println("Elije la tarifa de vuelo: ");
-                        String opTarifaRetorno = sc.nextLine().toUpperCase();
-
-                        while (!(opTarifaRetorno.equals("A") || opTarifaRetorno.equals("B") || opTarifaRetorno.equals("C"))) { //valida la opcion escogida
-                            System.out.println("Elija una opcion existente:");
-                            opTarifaRetorno = sc.nextLine();
-                        }
-
-                        TipoTarifa tipoTarifaRetorno = TipoTarifa.UNDEFINED;
-                        double precioVueloRetorno = 0;
-
-                        switch (opTarifaRetorno) {
-                            case "A":
-                                precioVueloRetorno = vueloRetorno.getPrecio();
-                                tipoTarifaRetorno = TipoTarifa.ECONOMY;
-                                break;
-                            case "B":
-                                precioVueloRetorno = vueloRetorno.getPrecio() + 60;
-                                tipoTarifaRetorno = TipoTarifa.PREMIUMECONOMY;
-                                break;
-                            case "C":
-                                precioVueloRetorno = vueloRetorno.getPrecio() + 90;
-                                tipoTarifaRetorno = TipoTarifa.PREMIUMBUSINESS;
-                                break;
-                            default:
-                                break;
-                        }
-
-                        System.out.println("////////////////////SUBTOTAL/////////////////////////");
-                        System.out.println("El subtotal de tu vuelo es: " + (precioVueloIda + precioVueloRetorno));
-                        System.out.println("¿Desea Continuar? (S/N)");
-                        continuar = sc.nextLine().toUpperCase();
-
-                        VueloReserva vueloRI = new VueloReserva(vueloIda, TipoVuelo.IDA, null, tipoTarifaIda); //VueloReserva de ida ************************************
-                        reserva.getVueloReservaL().add(vueloRI);
-                        VueloReserva vueloRT = new VueloReserva(vueloRetorno, TipoVuelo.VUELTA, null, tipoTarifaRetorno); //VueloReserva de retorno ************************************
-                        reserva.getVueloReservaL().add(vueloRT);
-                        reserva.setPrecioSubtotal(reserva.getPrecioSubtotal() + precioVueloIda + precioVueloRetorno);
-
+                    } else {
+                        cliente.hacerPago(reserva);
                     }
+                    
 
-                    System.out.println("");
-                    System.out.println("******************Paso 2*******************"); //PASO 2**************************************************
-                    System.out.println("*****************************************");
-                    System.out.println("");
-
-                    System.out.println("-----------Asientos------------");
-                    System.out.println("");
-
-                    System.out.println("");
-                    System.out.println("******************Paso 3*******************"); //PASO 3
-                    System.out.println("*****************************************");
-                    System.out.println("");
-
-                    String continuar2 = "N";
-                    while (continuar2.equals("N")) {
-                        System.out.println("-------------------------DATOS PASAJERO---------------------------");
-                        String[] nombreApellido = usuario.getNombres().split(" ");
-                        System.out.println("Nombres: " + nombreApellido[0]);
-                        System.out.println("Apellidos: " + nombreApellido[1]);
-                        System.out.println("Correo:");
-                        String correo = sc.nextLine();
-                        System.out.println("Genero(1. Masculino - 2. Femenino):");
-                        String genero = sc.nextLine();
-                        while (!genero.equals("1") && !genero.equals("2")) { //validacion
-                            System.out.println("Genero(1. Masculino - 2. Femenino). Ingrese el numero:");
-                            genero = sc.nextLine();
-                        }
-                        System.out.println("Nacionalidad:");
-                        String nacionalidad = sc.nextLine();
-                        System.out.println("Tipo de Documento(1. Cedula - 2. Pasaporte):");
-                        String tipoDocumento = sc.nextLine();
-                        while (!tipoDocumento.equals("1") && !tipoDocumento.equals("2")) { //validacion
-                            System.out.println("Tipo de Documento (1. Masculino - 2. Femenino). Ingrese el numero:");
-                            genero = sc.nextLine();
-                        }
-                        sc.nextLine();
-                        System.out.println("Numero de Documento:");
-                        String numDocumento = sc.nextLine();
-                        while (!(numDocumento.length() == 10) || numDocumento == null || !numDocumento.matches("[0-9]+")) { //validacion
-                            System.out.println("Tipo de Documento (1. Masculino - 2. Femenino). Ingrese el numero:");
-                            genero = sc.nextLine();
-                        }
-                        System.out.println("");
-
-                        System.out.println("Desea guardar los datos del pasajero y continuar con el pago (S/N)? ");
-                        continuar2 = sc.nextLine().toUpperCase();
-                        while (!continuar2.equals("S") && !continuar2.equals("N")) { //validacion
-                            System.out.println("Desea guardar los datos del pasajero y continuar con el pago (S/N)? ");
-                            continuar2 = sc.nextLine().toUpperCase();
-                        }
-
-                    }
-                    System.out.println("Ha completado el paso 3");
-
-                    System.out.println("");
-                    System.out.println("******************Paso 4*******************"); //PASO 4
-                    System.out.println("*****************************************");
-                    System.out.println("");
-                    System.out.println("--------------------------PAGO--------------------------");
-                    System.out.println("");
-                    System.out.println("Descripción:");
-                    System.out.println("");
-
-                    System.out.println("Subtotal: " );
+                    
 
                 case 2:
                 case 3:
 
             }
         }
-    
+
     }
-    
 
     public static int mostrarMenuCliente() {
         Scanner sc = new Scanner(System.in);
@@ -484,4 +290,5 @@ public class Sistema {
         sc.nextLine();
         return op;
     }
+
 }

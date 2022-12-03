@@ -4,11 +4,15 @@
  */
 package com.mycompany.proyecto1p_rosario_garcia_guerrero;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  *
  * @author Cliente Intel
  */
 public abstract class Usuario {
+
     protected String cedula;
     protected String nombres;
     protected int edad;
@@ -16,8 +20,8 @@ public abstract class Usuario {
     protected String user;
     protected String password;
     protected char rol;
-    
-    public Usuario(String cedula, String nombres, int edad, String mail, String user, String password, char rol){
+
+    public Usuario(String cedula, String nombres, int edad, String mail, String user, String password, char rol) {
         this.cedula = cedula;
         this.nombres = nombres;
         this.edad = edad;
@@ -25,6 +29,92 @@ public abstract class Usuario {
         this.user = user;
         this.password = password;
         this.rol = rol;
+    }
+
+    public void ingresarDatosCliente() {
+        System.out.println("");
+        System.out.println("******************Paso 3*******************"); //PASO 3
+        System.out.println("*****************************************");
+        System.out.println("");
+
+        Scanner sc = new Scanner(System.in);
+        String continuar = "N";
+        while (continuar.equals("N")) {
+            System.out.println("-------------------------DATOS PASAJERO---------------------------");
+            String[] nombreApellido = this.getNombres().split(" ");
+            System.out.println("Nombres: " + nombreApellido[0]);
+            System.out.println("Apellidos: " + nombreApellido[1]);
+
+            System.out.println("Correo:");
+            String correo = sc.nextLine();
+            int cont = 0;
+            while (cont == 0) {
+                if (correo.equals(this.getMail())) {
+                    cont++;
+                }
+                if (cont == 0) {
+                    System.out.println("Ingrese el correo con el que se regitró: ");
+                    correo = sc.nextLine();
+                }
+            }
+
+            System.out.println("Genero (1. Masculino - 2. Femenino):");
+            String genero = sc.nextLine();
+            cont = 0;
+            while (cont == 0) {
+                if (genero.equals("1")) {
+                    cont++;
+                }
+                if (genero.equals("2")) {
+                    cont++;
+                }
+                if (cont == 0) {
+                    System.out.println("Genero (1. Masculino - 2. Femenino). Ingrese el numero:");
+                    genero = sc.nextLine();
+                }
+            }
+
+            System.out.println("Nacionalidad:");
+            String nacionalidad = sc.nextLine();
+
+            System.out.println("Tipo de Documento (1. Cedula - 2. Pasaporte):");
+            String tipoDocumento = sc.nextLine();
+            cont = 0;
+            while (cont == 0) {
+                if (tipoDocumento.equals("1")) {
+                    cont++;
+                }
+                if (tipoDocumento.equals("2")) {
+                    cont++;
+                }
+                if (cont == 0) {
+                    System.out.println("Tipo de Documento (1. Cedula - 2. Pasaporte). Ingrese el numero:");
+                    genero = sc.nextLine();
+                }
+            }
+
+            System.out.println("Numero de Documento:");
+            String numDocumento = sc.nextLine();
+            cont = 0;
+            while (cont == 0) {
+                if (numDocumento.equals(this.getCedula())) {
+                    cont++;
+                }
+                if (cont == 0) {
+                    System.out.println("Ingrese su numero de documento :");
+                    numDocumento = sc.nextLine();
+                }
+            }
+
+            System.out.println("");
+            System.out.println("Desea guardar los datos del pasajero y continuar con el pago (S/N)? ");
+            continuar = sc.nextLine().toUpperCase();
+            while (!continuar.equals("S") && !continuar.equals("N")) { //validacion
+                System.out.println("Desea guardar los datos del pasajero y continuar con el pago (S/N)? ");
+                continuar = sc.nextLine().toUpperCase();
+            }
+        }
+        System.out.println("Ha completado el paso 3");
     }
 
     public String getCedula() {
@@ -87,7 +177,5 @@ public abstract class Usuario {
     public String toString() {
         return "Usuario{" + "cedula=" + cedula + ", nombres=" + nombres + ", edad=" + edad + ", mail=" + mail + ", user=" + user + ", password=" + password + ", rol=" + rol + '}';
     }
-    
-    
-    
+
 }

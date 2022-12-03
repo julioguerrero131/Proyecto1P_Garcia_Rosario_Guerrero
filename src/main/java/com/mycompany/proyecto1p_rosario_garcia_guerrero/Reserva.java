@@ -7,6 +7,7 @@ package com.mycompany.proyecto1p_rosario_garcia_guerrero;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -14,23 +15,28 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author Cliente Intel
  */
 public class Reserva {
+
     private String codigoReserva;
     private Cliente cliente;
     private String fechaCompra;
     private double PrecioSubtotal;
+    private int precioMillasTotal;
     private ArrayList<VueloReserva> vueloReservaL = new ArrayList();
 
-    public Reserva(Cliente cliente, double PrecioSubtotal, ArrayList<VueloReserva> vueloReservaL) {
+    public Reserva(Cliente cliente, double PrecioSubtotal, int precioMillasTotal, ArrayList<VueloReserva> vueloReservaL) {
         this.codigoReserva = codigoAleatorio();
         this.cliente = cliente;
         Date fechaActual = new Date();
         this.fechaCompra = new SimpleDateFormat("dd/MM/yyyy").format(fechaActual);
         this.PrecioSubtotal = PrecioSubtotal;
+        this.precioMillasTotal = precioMillasTotal;
         this.vueloReservaL = vueloReservaL;
     }
+
     
+
     public static String codigoAleatorio() {  //cadena aleatoria para el codigo
-        int longitud  = 5;
+        int longitud = 5;
         // El banco de caracteres
         String banco = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         // La cadena en donde iremos agregando un carácter aleatorio
@@ -42,10 +48,11 @@ public class Reserva {
         }
         return cadena;
     }
+
     public static int numeroAleatorioEnRango(int minimo, int maximo) {
         // nextInt regresa en rango pero con límite superior exclusivo, por eso sumamos 1
         return ThreadLocalRandom.current().nextInt(minimo, maximo + 1);
-        
+
     }
 
     public String getCodigoReserva() {
@@ -87,7 +94,14 @@ public class Reserva {
     public void setVueloReservaL(ArrayList<VueloReserva> vueloReservaL) {
         this.vueloReservaL = vueloReservaL;
     }
-    
+
+    public int getPrecioMillasTotal() {
+        return precioMillasTotal;
+    }
+
+    public void setPrecioMillasTotal(int precioMillasTotal) {
+        this.precioMillasTotal = precioMillasTotal;
+    }
     
     
 
@@ -95,7 +109,5 @@ public class Reserva {
     public String toString() {
         return "Reserva{" + "codigoReserva=" + codigoReserva + ", cliente=" + cliente + ", fechaCompra=" + fechaCompra + ", PrecioSubtotal=" + PrecioSubtotal + ", vueloReservaL=" + vueloReservaL + '}';
     }
-    
-    
-    
+
 }

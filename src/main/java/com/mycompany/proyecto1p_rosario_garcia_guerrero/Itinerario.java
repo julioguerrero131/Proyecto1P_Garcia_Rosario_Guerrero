@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.proyecto1p_rosario_garcia_guerrero;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,15 +12,15 @@ import java.util.Scanner;
  * @author Cliente Intel
  */
 public class Itinerario {
-    
+
     private String codigoItinerario;
-    private String origen;  
+    private String origen;
     private String destino;
     private String horaSalida;
     private String horaLlegada;
     private String duracion;
-    
-    public Itinerario(String codigoItinerario, String origen, String destino, String horaSalida, String horaLlegada, String duracion){
+
+    public Itinerario(String codigoItinerario, String origen, String destino, String horaSalida, String horaLlegada, String duracion) {
         this.codigoItinerario = codigoItinerario;
         this.origen = origen;
         this.destino = destino;
@@ -28,33 +29,34 @@ public class Itinerario {
         this.duracion = duracion;
     }
 
-    public static int elegirOrigen(ArrayList<String> lista){
+    public static int elegirOrigen(ArrayList<String> lista) {
         System.out.println("------ORIGEN-----");
-        int cont=1;
-        for (String o:lista){
-            System.out.println(cont +"."+o);
+        int cont = 1;
+        for (String o : lista) {
+            System.out.println(cont + "." + o);
             cont++;
         }
-        Scanner sc = new Scanner(System.in); 
+        Scanner sc = new Scanner(System.in);
         System.out.println("Elegir punto partida: ");
         int op = sc.nextInt();
         sc.nextLine();
         return op;
     }
-    public static int elegirDestino(ArrayList<String> lista){
-         System.out.println("------DESTINO-----");
-        int cont=1;
-        for (String o:lista){
-            System.out.println(cont +"."+o);
+
+    public static int elegirDestino(ArrayList<String> lista) {
+        System.out.println("------DESTINO-----");
+        int cont = 1;
+        for (String o : lista) {
+            System.out.println(cont + "." + o);
             cont++;
         }
-        Scanner sc = new Scanner(System.in); 
+        Scanner sc = new Scanner(System.in);
         System.out.println("Elegir punto partida: ");
         int op = sc.nextInt();
         sc.nextLine();
         return op;
     }
-    
+
     //getters y setters
     public String getCodigoItinerario() {
         return codigoItinerario;
@@ -108,7 +110,5 @@ public class Itinerario {
     public String toString() {
         return "Itinerario{" + "codigoItinerario=" + codigoItinerario + ", origen=" + origen + ", destino=" + destino + ", horaSalida=" + horaSalida + ", horaLlegada=" + horaLlegada + ", duracion=" + duracion + '}';
     }
-    
-    
-    
+
 }
