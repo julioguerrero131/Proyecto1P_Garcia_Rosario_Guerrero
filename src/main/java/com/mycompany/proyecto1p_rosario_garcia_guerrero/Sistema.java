@@ -232,6 +232,9 @@ public class Sistema {
             int opcion = mostrarMenuCliente(); //acciones de clientes
             switch (opcion) {
                 case 1:
+                    
+                    String continuar= "S";
+                    while(!(continuar.equals("N"))){
                     int opcion1 = Itinerario.elegirOrigen(origenes);
                     int opcion2 = Itinerario.elegirDestino(destinos);
                     String origen = origenes.get(opcion1 - 1);
@@ -366,9 +369,9 @@ public class Sistema {
                 
                 System.out.println("////////////////////SUBTOTAL/////////////////////////");
                 System.out.println("El subototal de tu vuelo es: " +(elecciontarifa + elecciontarifaRetorno));
-                System.out.println("El subototal de tu vuelo es: " + elecciontarifa);
-                System.out.println("El subototal de tu vuelo es: " + elecciontarifaRetorno);
-                    //PASO 2
+                System.out.println("¿Desea Continuar? (S/N)");
+                continuar= sc.nextLine().toUpperCase();
+                    
                     System.out.println("");
                     System.out.println("******************Paso 2*******************");
                     System.out.println("*****************************************");
@@ -381,7 +384,7 @@ public class Sistema {
 //                    System.out.println("Para tu vuelo de ida "++"");
 
 //                    System.out.println("Para tu vuelo de ida "++"");
-                     
+                    }   
                 case 2:
                 case 3:
 

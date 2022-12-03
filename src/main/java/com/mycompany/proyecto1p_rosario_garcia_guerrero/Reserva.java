@@ -4,10 +4,14 @@
  */
 package com.mycompany.proyecto1p_rosario_garcia_guerrero;
 
+import java.util.Date;
+
 /**
  *
  * @author Cliente Intel
  */
 public class Reserva {
-    
+    private String codigoReserva;
+    private Cliente cliente;
+    private Date fechaCompra;
 }
