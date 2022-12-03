@@ -13,12 +13,14 @@ public class VueloReserva {
     private Vuelo vuelo;
     private TipoVuelo tipoVuelo;
     private Asiento asiento;
+    private TipoTarifa tipoTarifa;
 
-    public VueloReserva(Vuelo vuelo, TipoVuelo tipoVuelo, Asiento asiento) { 
+    public VueloReserva(Vuelo vuelo, TipoVuelo tipoVuelo, Asiento asiento, TipoTarifa tipoTarifa) { 
         this.vuelo = vuelo;
         this.tipoVuelo = tipoVuelo;
         this.asiento = asiento;
         this.codigoVueloReserva= (int) (Math.random()* ((10000 - 1000) + 1) + 1000);
+        this.tipoTarifa = tipoTarifa;
     }
 
     public int getCodigoVueloReserva() {
@@ -52,6 +54,20 @@ public class VueloReserva {
     public void setAsiento(Asiento asiento) {
         this.asiento = asiento;
     }
+
+    public TipoTarifa getTipoTarifa() {
+        return tipoTarifa;
+    }
+
+    public void setTipoTarifa(TipoTarifa tipoTarifa) {
+        this.tipoTarifa = tipoTarifa;
+    }
+
+    @Override
+    public String toString() {
+        return "VueloReserva{" + "codigoVueloReserva=" + codigoVueloReserva + ", vuelo=" + vuelo + ", tipoVuelo=" + tipoVuelo + ", asiento=" + asiento + ", tipoTarifa=" + tipoTarifa + '}';
+    }
+    
     
     
      

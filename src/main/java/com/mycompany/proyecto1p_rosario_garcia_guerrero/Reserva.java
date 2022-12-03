@@ -4,7 +4,10 @@
  */
 package com.mycompany.proyecto1p_rosario_garcia_guerrero;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  *
@@ -13,5 +16,86 @@ import java.util.Date;
 public class Reserva {
     private String codigoReserva;
     private Cliente cliente;
-    private Date fechaCompra;
+    private String fechaCompra;
+    private double PrecioSubtotal;
+    private ArrayList<VueloReserva> vueloReservaL = new ArrayList();
+
+    public Reserva(Cliente cliente, double PrecioSubtotal, ArrayList<VueloReserva> vueloReservaL) {
+        this.codigoReserva = codigoAleatorio();
+        this.cliente = cliente;
+        Date fechaActual = new Date();
+        this.fechaCompra = new SimpleDateFormat("dd/MM/yyyy").format(fechaActual);
+        this.PrecioSubtotal = PrecioSubtotal;
+        this.vueloReservaL = vueloReservaL;
+    }
+    
+    public static String codigoAleatorio() {  //cadena aleatoria para el codigo
+        int longitud  = 5;
+        // El banco de caracteres
+        String banco = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        // La cadena en donde iremos agregando un carácter aleatorio
+        String cadena = "";
+        for (int x = 0; x < longitud; x++) {
+            int indiceAleatorio = numeroAleatorioEnRango(0, banco.length() - 1);
+            char caracterAleatorio = banco.charAt(indiceAleatorio);
+            cadena += caracterAleatorio;
+        }
+        return cadena;
+    }
+    public static int numeroAleatorioEnRango(int minimo, int maximo) {
+        // nextInt regresa en rango pero con límite superior exclusivo, por eso sumamos 1
+        return ThreadLocalRandom.current().nextInt(minimo, maximo + 1);
+        
+    }
+
+    public String getCodigoReserva() {
+        return codigoReserva;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public String getFechaCompra() {
+        return fechaCompra;
+    }
+
+    public double getPrecioSubtotal() {
+        return PrecioSubtotal;
+    }
+
+    public ArrayList<VueloReserva> getVueloReservaL() {
+        return vueloReservaL;
+    }
+
+    public void setCodigoReserva(String codigoReserva) {
+        this.codigoReserva = codigoReserva;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public void setFechaCompra(String fechaCompra) {
+        this.fechaCompra = fechaCompra;
+    }
+
+    public void setPrecioSubtotal(double PrecioSubtotal) {
+        this.PrecioSubtotal = PrecioSubtotal;
+    }
+
+    public void setVueloReservaL(ArrayList<VueloReserva> vueloReservaL) {
+        this.vueloReservaL = vueloReservaL;
+    }
+    
+    
+    
+
+    @Override
+    public String toString() {
+        return "Reserva{" + "codigoReserva=" + codigoReserva + ", cliente=" + cliente + ", fechaCompra=" + fechaCompra + ", PrecioSubtotal=" + PrecioSubtotal + ", vueloReservaL=" + vueloReservaL + '}';
+    }
+    
+    
+    
 }

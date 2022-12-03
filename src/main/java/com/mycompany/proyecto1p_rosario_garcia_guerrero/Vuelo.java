@@ -85,19 +85,6 @@ public class Vuelo {
     public void setPrecioMillas(int precioMillas) {
         this.precioMillas = precioMillas;
     }
-
-    public static double tarifaEconomic(double valor) {
-        return valor;
-    }
-
-    public static double tarifaPremiumBusiness(double valor) {
-        return (valor + 90);
-    }
-
-    public static double tarifaPremiumEconomy(double valor) {
-        return (valor + 60);
-    }
-
  
     @Override
     public String toString() {
