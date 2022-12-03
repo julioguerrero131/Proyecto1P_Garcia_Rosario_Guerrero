@@ -241,7 +241,7 @@ public class Sistema {
                     ArrayList<VueloReserva> vuelosReservaL = new ArrayList();
                     Cliente cliente = (Cliente) usuario;
                     Reserva reserva = new Reserva(cliente, 0, vuelosReservaL);
-                    
+
                     String continuar = "S";
                     while (!(continuar.equals("N"))) {
                         int opcion1 = Itinerario.elegirOrigen(origenes);
@@ -383,10 +383,10 @@ public class Sistema {
                         reserva.getVueloReservaL().add(vueloRI);
                         VueloReserva vueloRT = new VueloReserva(vueloRetorno, TipoVuelo.VUELTA, null, tipoTarifaRetorno); //VueloReserva de retorno ************************************
                         reserva.getVueloReservaL().add(vueloRT);
-                        reserva.setPrecioSubtotal( reserva.getPrecioSubtotal() + precioVueloIda + precioVueloRetorno );
-                            
-                        }
+                        reserva.setPrecioSubtotal(reserva.getPrecioSubtotal() + precioVueloIda + precioVueloRetorno);
+
                     }
+
                     System.out.println("");
                     System.out.println("******************Paso 2*******************"); //PASO 2**************************************************
                     System.out.println("*****************************************");
@@ -450,16 +450,16 @@ public class Sistema {
                     System.out.println("Descripción:");
                     System.out.println("");
 
-                    System.out.println("Subtotal: " +  );
-                    
-                    }
+                    System.out.println("Subtotal: " );
 
                 case 2:
                 case 3:
 
             }
         }
+    
     }
+    
 
     public static int mostrarMenuCliente() {
         Scanner sc = new Scanner(System.in);
