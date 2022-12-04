@@ -2,7 +2,7 @@ package com.mycompany.proyecto1p_rosario_garcia_guerrero;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import manejoArchivos.ManejoArchivos;
 public class Cliente extends Usuario {
 
     protected String numTarjeta;
@@ -186,6 +186,19 @@ public class Cliente extends Usuario {
             }
 
         }
+        String informacionida= (reserva.getCodigoReserva()+ "," + String.valueOf(reserva.getVueloReservaL().get(0).getVuelo().getCodigoVuelo())+"," + reserva.getCliente().nombres+ "," + reserva.getFechaCompra()+ "," +String.valueOf(reserva.getPrecioSubtotal()));
+        manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", informacionida);
+//        manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", String.valueOf(reserva.getVueloReservaL().get(0).getVuelo().getCodigoVuelo() +","));
+//        manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", reserva.getCliente().nombres +",");
+//        manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", reserva.getFechaCompra() +",");
+//        manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", String.valueOf(reserva.getPrecioSubtotal()) +"\n");
+        String informacionret= (reserva.getCodigoReserva()+ "," + String.valueOf(reserva.getVueloReservaL().get(1).getVuelo().getCodigoVuelo())+ "," +reserva.getCliente().nombres+ "," + reserva.getFechaCompra()+ "," + String.valueOf(reserva.getPrecioSubtotal()) );
+        manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", informacionret);
+//        manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", String.valueOf(reserva.getVueloReservaL().get(1).getVuelo().getCodigoVuelo()+","));
+//        manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", reserva.getCliente().nombres+",");
+//        manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", reserva.getFechaCompra()+",");
+//        manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", String.valueOf(reserva.getPrecioSubtotal()) + "\n");        
+        
         return reserva;
     }
 
