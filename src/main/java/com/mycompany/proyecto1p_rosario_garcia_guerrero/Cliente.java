@@ -3,6 +3,7 @@ package com.mycompany.proyecto1p_rosario_garcia_guerrero;
 import java.util.ArrayList;
 import java.util.Scanner;
 import manejoArchivos.ManejoArchivos;
+
 public class Cliente extends Usuario {
 
     protected String numTarjeta;
@@ -163,18 +164,18 @@ public class Cliente extends Usuario {
             System.out.println("");
             //metodo en vuelo reserva que retorne un objeto asiento disponible, y sino, un null 
             //Si se devuelve un null no se guarda la reserva, sino, si:
-            
+
             String codigoAvIda = vueloIda.getAvion().getCodigoAvion();
             Asiento as1 = Vuelo.asignarAsiento(codigoAvIda);
             String codigoAvRetorno = vueloRetorno.getAvion().getCodigoAvion();
             Asiento as2 = Vuelo.asignarAsiento(codigoAvRetorno);
-            
-            if (as1 == null || as2==null) { //asiento sale del metodo //cambiar
+
+            if (as1 == null || as2 == null) { //asiento sale del metodo //cambiar
                 System.out.println("No se encontraron asientos disponibles. Reserve nuevamente.");
                 continuar = "N";
-            }else{
+            } else {
                 System.out.println("Para tu vuelo de ida " + vueloIda.getCodigoVuelo() + " se te ha asignado el asiento " + as1.getNumAsiento());
-                System.out.println("Para tu vuelo de retorno " + vueloRetorno.getCodigoVuelo() + " se te ha asignado el asiento " + as2.getNumAsiento() );
+                System.out.println("Para tu vuelo de retorno " + vueloRetorno.getCodigoVuelo() + " se te ha asignado el asiento " + as2.getNumAsiento());
                 if (continuar.equals("S")) {
                     VueloReserva vueloRI = new VueloReserva(vueloIda, TipoVuelo.IDA, null, tipoTarifaIda); //VueloReserva de ida ************************************
                     reserva.getVueloReservaL().add(vueloRI);
@@ -183,15 +184,15 @@ public class Cliente extends Usuario {
                     reserva.setPrecioSubtotal(reserva.getPrecioSubtotal() + precioVueloIda + precioVueloRetorno);
                     reserva.setPrecioMillasTotal(reserva.getPrecioMillasTotal() + vueloRI.getVuelo().getPrecioMillas() + vueloRT.getVuelo().getPrecioMillas());
                     System.out.println("Reserva Guardada con exito");
-                    String informacionida= (reserva.getCodigoReserva()+ "," + String.valueOf(reserva.getVueloReservaL().get(0).getVuelo().getCodigoVuelo())+"," + reserva.getCliente().nombres+ "," + reserva.getFechaCompra()+ "," +String.valueOf(reserva.getPrecioSubtotal()));
-                    manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", informacionida);
-                    String informacionret= (reserva.getCodigoReserva()+ "," + String.valueOf(reserva.getVueloReservaL().get(1).getVuelo().getCodigoVuelo())+ "," +reserva.getCliente().nombres+ "," + reserva.getFechaCompra()+ "," + String.valueOf(reserva.getPrecioSubtotal()) );
-                    manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", informacionret);
-                }else{
+                    String informacionida = (reserva.getCodigoReserva() + "," + String.valueOf(reserva.getVueloReservaL().get(0).getVuelo().getCodigoVuelo()) + "," + reserva.getCliente().nombres + "," + reserva.getFechaCompra() + "," + String.valueOf(reserva.getPrecioSubtotal()));
+                    manejoArchivos.ManejoArchivos.EscribirArchivo("reservas.txt", informacionida);
+                    String informacionret = (reserva.getCodigoReserva() + "," + String.valueOf(reserva.getVueloReservaL().get(1).getVuelo().getCodigoVuelo()) + "," + reserva.getCliente().nombres + "," + reserva.getFechaCompra() + "," + String.valueOf(reserva.getPrecioSubtotal()));
+                    manejoArchivos.ManejoArchivos.EscribirArchivo("reservas.txt", informacionret);
+                } else {
                     System.out.println("No se guardo la reserva");
                 }
             }
-        } 
+        }
         return reserva;
     }
 
@@ -202,35 +203,48 @@ public class Cliente extends Usuario {
         System.out.println("******************Paso 4*******************"); //PASO 4
         System.out.println("*****************************************");
         System.out.println("");
-        System.out.println("--------------------------PAGO--------------------------");
-        System.out.println("");
-        System.out.println("Descripción:");
-        System.out.println("");
-        double subtotal = reserva.getPrecioSubtotal();
-        System.out.println("Subtotal: " + subtotal);
 
-        double iva = subtotal * 0.12;
-        System.out.println(String.format("IVA: %.2f", iva));
-        double total = subtotal + iva;
-        System.out.println(String.format("TOTAL A PAGAR: %.2f", total));
+        String op = "n";
+        while (op.equals("n")) {
 
-        System.out.println("");
-        System.out.println("Forma de Pago: ");
-        System.out.println("1. Tarjeta de Credito \n2. Millas");
+            System.out.println("--------------------------PAGO--------------------------");
+            System.out.println("");
+            System.out.println("Descripción:");
+            System.out.println("");
+            double subtotal = reserva.getPrecioSubtotal();
+            System.out.println("Subtotal: " + subtotal);
 
-        String fp = sc.nextLine();
-        while (!fp.equals("1")) { //validacion
-            System.out.println("Elija otra forma de pago: ");
+            double iva = subtotal * 0.12;
+            System.out.println(String.format("IVA: %.2f", iva));
+            double total = subtotal + iva;
+            System.out.println(String.format("TOTAL A PAGAR: %.2f", total));
+
+            System.out.println("");
+            System.out.println("Forma de Pago: ");
             System.out.println("1. Tarjeta de Credito \n2. Millas");
-            fp = sc.nextLine();
-        }
-        System.out.println("Ingrese su tarjeta de credito: ");
-        String t = sc.nextLine();
-        while (!this.getNumTarjeta().equals(t)) {
-            System.out.println("Tarjeta Incorrecta.");
+
+            String fp = sc.nextLine();
+            while (!fp.equals("1")) { //validacion
+                System.out.println("Elija otra forma de pago: ");
+                System.out.println("1. Tarjeta de Credito \n2. Millas");
+                fp = sc.nextLine();
+            }
             System.out.println("Ingrese su tarjeta de credito: ");
-            t = sc.nextLine();
+            String t = sc.nextLine();
+            while (!this.getNumTarjeta().equals(t)) {
+                System.out.println("Tarjeta Incorrecta.");
+                System.out.println("Ingrese su tarjeta de credito: ");
+                t = sc.nextLine();
+            }
+
+            System.out.println("¿Estas seguro de pagar el vuelo (s/n) ? ");
+            op = sc.nextLine().toLowerCase();
+            while (!(op.equals("s") || op.equals("n"))) {
+                System.out.println("Opcion incorrecta.¿Estas seguro de pagar el vuelo (s/n)?. Recomendacion: Eliga una letra.");
+                op = sc.nextLine().toLowerCase();
+            }
         }
+        System.out.println("Has comprado tu vuelo. El codigo de reserva es: " + reserva.getCodigoReserva());
         reserva.setPrecioSubtotal(reserva.getPrecioSubtotal() + (reserva.getPrecioSubtotal() / 0.1)); //aumento del 10% por pago en tarjeta
     }
 
