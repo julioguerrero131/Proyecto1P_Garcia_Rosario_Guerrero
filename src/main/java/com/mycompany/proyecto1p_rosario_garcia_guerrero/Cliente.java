@@ -163,7 +163,15 @@ public class Cliente extends Usuario {
             System.out.println("");
             //metodo en vuelo reserva que retorne un objeto asiento disponible, y sino, un null 
             //Si se devuelve un null no se guarda la reserva, sino, si:
-
+            
+            String codigoAvIda = vueloIda.getAvion().getCodigoAvion();
+            //String as1 = Vuelo.asignarAsiento(codigoAvIda);
+            System.out.println("Para tu vuelo de ida " + vueloIda.getCodigoVuelo() + " se te ha asignado el asiento " + Vuelo.asignarAsiento(codigoAvIda) );
+            
+            String codigoAvRetorno = vueloRetorno.getAvion().getCodigoAvion();
+            //String as2 = Vuelo.asignarAsiento(codigoAvRetorno);
+            System.out.println("Para tu vuelo de retorno " + vueloRetorno.getCodigoVuelo() + " se te ha asignado el asiento " + Vuelo.asignarAsiento(codigoAvRetorno) );
+            
             Asiento asiento = null; //ELIMINAR
             if (asiento == null) { //asiento sale del metodo //cambiar
                 if (continuar.equals("S")) {

@@ -12,7 +12,7 @@ import java.util.Date;
  *
  * @author Cliente Intel
  */
-public class Vuelo {
+public class Vuelo extends Sistema {
 
     private String codigoVuelo;
     private Avion avion;
@@ -29,7 +29,37 @@ public class Vuelo {
         this.precio = precio;
         this.precioMillas = precioMillas;
     }
-
+     
+    //String codigoAv = avion.getCodigoAvion();
+    public static String asignarAsiento(String codigoAv){
+        String asientoAsignado = null;
+        ArrayList<String> listaDisponibles = new ArrayList<>();
+        int num = listaDisponibles.size();
+        for (Asiento asiento: Sistema.listaAsientos) {
+            //System.out.println(listaAsientos);
+            if(asiento.getCodigoAvion().equals(codigoAv)){
+                //System.out.println("c");
+                if(asiento.getDisponible().equals(Disponibilidad.S)){
+                    //System.out.println("d");
+                    asientoAsignado = asiento.getNumAsiento();
+                    listaDisponibles.add(asientoAsignado);
+                    int aleatorio = (int)(Math.random()*num);
+                    asientoAsignado = listaDisponibles.get(aleatorio);
+                    //System.out.println(asientoAsignado + "a");
+                } else {
+                    //System.out.println(asientoAsignado + "b");
+                    asientoAsignado = null;
+                    
+                }
+            }
+            //System.out.println(asientoAsignado);
+            //return asientoAsignado;
+        }
+        //System.out.println(asientoAsignado);
+        //System.out.println(asientoAsignado);  
+        return asientoAsignado;
+    }
+    
     public String getCodigoVuelo() {
         return codigoVuelo;
     }

@@ -45,18 +45,18 @@ public abstract class Usuario {
             System.out.println("Nombres: " + nombreApellido[0]);
             System.out.println("Apellidos: " + nombreApellido[1]);
 
-            System.out.println("Correo:");
-            String correo = sc.nextLine();
+            System.out.println("Correo:" + this.getMail());
+//            String correo = sc.nextLine();
             int cont = 0;
-            while (cont == 0) {
-                if (correo.equals(this.getMail())) {
-                    cont++;
-                }
-                if (cont == 0) {
-                    System.out.println("Ingrese el correo con el que se regitró: ");
-                    correo = sc.nextLine();
-                }
-            }
+//            while (cont == 0) {
+//                if (correo.equals(this.getMail())) {
+//                    cont++;
+//                }
+//                if (cont == 0) {
+//                    System.out.println("Ingrese el correo con el que se regitró: ");
+//                    correo = sc.nextLine();
+//                }
+//            }
 
             System.out.println("Genero (1. Masculino - 2. Femenino):");
             String genero = sc.nextLine();
@@ -93,18 +93,18 @@ public abstract class Usuario {
                 }
             }
 
-            System.out.println("Numero de Documento:");
-            String numDocumento = sc.nextLine();
-            cont = 0;
-            while (cont == 0) {
-                if (numDocumento.equals(this.getCedula())) {
-                    cont++;
-                }
-                if (cont == 0) {
-                    System.out.println("Ingrese su numero de documento :");
-                    numDocumento = sc.nextLine();
-                }
-            }
+            System.out.println("Numero de Documento:" + this.getCedula());
+//            String numDocumento = sc.nextLine();
+//            cont = 0;
+//            while (cont == 0) {
+//                if (numDocumento.equals(this.getCedula())) {
+//                    cont++;
+//                }
+//                if (cont == 0) {
+//                    System.out.println("Ingrese su numero de documento :");
+//                    numDocumento = sc.nextLine();
+//                }
+//            }
 
             System.out.println("");
             System.out.println("Desea guardar los datos del pasajero y continuar con el pago (S/N)? ");

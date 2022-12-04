@@ -68,9 +68,11 @@ public class ClienteVIP extends Cliente {
             } else {
                 System.out.println("No posee millas Suficientes. Intente de nuevo.");
             }
-            return false;
+            //return false;
         }
+        return false;
     }
+
 
     public String getTipoVIP() {
         return tipoVIP;

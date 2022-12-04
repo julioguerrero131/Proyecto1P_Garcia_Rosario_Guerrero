@@ -24,6 +24,7 @@ public class Avion {
         }
     }
 
+
     public String getCodigoAvion() {
         return codigoAvion;
     }

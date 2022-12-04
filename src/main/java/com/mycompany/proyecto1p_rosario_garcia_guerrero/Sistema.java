@@ -43,11 +43,15 @@ public class Sistema {
         cargarItinerarios("itinerarios.txt");
         cargarVuelos("vuelos.txt");
         cargarUsuarios("usuarios.txt", "clientes.txt", "operadores.txt");
+        
+        
 
         Usuario usuario = iniciarSesion();
         mostrarMenu(usuario);
 
     }
+    
+    
 
     //Comienzo carga de Archivos
     public static void cargarAsientos(String archivoAsientos) {
@@ -60,6 +64,7 @@ public class Sistema {
         }
     }
 
+    
     public static void cargarAviones(String archivoAviones) {
         ArrayList<String> lineasAvion = ManejoArchivos.LeeFichero(archivoAviones);
 
