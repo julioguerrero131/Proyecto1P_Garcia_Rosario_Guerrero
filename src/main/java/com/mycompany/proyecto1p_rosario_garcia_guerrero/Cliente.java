@@ -13,13 +13,22 @@ public class Cliente extends Usuario {
         this.numTarjeta = numTarjeta;
     }
 
+    @Override
+    public void consultarReserva() {
+        for (Reserva reserva1 : Sistema.listaReservas) {
+            if (reserva1.getCliente().getCedula().equals(this.cedula)) {
+                System.out.println(reserva1.toString());
+            }
+        }
+    }
+
     public Reserva hacerReserva() {
         ArrayList<VueloReserva> vuelosReservaL = new ArrayList();
         Reserva reserva = new Reserva(this, 0, 0, vuelosReservaL);
         Scanner sc = new Scanner(System.in);
 
-        String continuar = "N";
-        while (!(continuar.equals("S"))) {
+        String continuar = "n";
+        while (!(continuar.equals("s"))) {
             int opcion1 = Itinerario.elegirOrigen(Sistema.origenes);
             int opcion2 = Itinerario.elegirDestino(Sistema.destinos);
             String origen = Sistema.origenes.get(opcion1 - 1);
@@ -127,7 +136,7 @@ public class Cliente extends Usuario {
 
             while (!(opTarifaRetorno.equals("A") || opTarifaRetorno.equals("B") || opTarifaRetorno.equals("C"))) { //valida la opcion escogida
                 System.out.println("Elija una opcion existente:");
-                opTarifaRetorno = sc.nextLine();
+                opTarifaRetorno = sc.nextLine().toUpperCase();
             }
 
             TipoTarifa tipoTarifaRetorno = TipoTarifa.UNDEFINED;
@@ -153,7 +162,14 @@ public class Cliente extends Usuario {
             System.out.println("////////////////////SUBTOTAL/////////////////////////");
             System.out.println("El subtotal de tu vuelo es: " + (precioVueloIda + precioVueloRetorno));
             System.out.println("¿Desea Continuar? (S/N)");
-            continuar = sc.nextLine().toUpperCase();
+            continuar = sc.nextLine().toLowerCase();
+            while (!(continuar.equals("s") || continuar.equals("n"))) {
+                System.out.println("Opcion incorrecta.¿Estas seguro de pagar el vuelo (s/n)?. Recomendacion: Eliga una letra.");
+                continuar = sc.nextLine().toLowerCase();
+            }
+            if (continuar.equals("n")) {
+                Sistema.mostrarMenu(this);
+            }
 
             System.out.println("");
             System.out.println("******************Paso 2*******************"); //PASO 2**************************************************
@@ -172,14 +188,23 @@ public class Cliente extends Usuario {
 
             if (as1 == null || as2 == null) { //asiento sale del metodo //cambiar
                 System.out.println("No se encontraron asientos disponibles. Reserve nuevamente.");
-                continuar = "N";
+                continuar = "n";
             } else {
                 System.out.println("Para tu vuelo de ida " + vueloIda.getCodigoVuelo() + " se te ha asignado el asiento " + as1.getNumAsiento());
                 System.out.println("Para tu vuelo de retorno " + vueloRetorno.getCodigoVuelo() + " se te ha asignado el asiento " + as2.getNumAsiento());
-                if (continuar.equals("S")) {
-                    VueloReserva vueloRI = new VueloReserva(vueloIda, TipoVuelo.IDA, null, tipoTarifaIda); //VueloReserva de ida ************************************
+                System.out.println("¿Desea Continuar? (s/n)");
+                continuar = sc.nextLine().toLowerCase();
+                while (!(continuar.equals("s") || continuar.equals("n"))) {
+                    System.out.println("Opcion incorrecta.¿Estas seguro de pagar el vuelo (s/n)?. Recomendacion: Eliga una letra.");
+                    continuar = sc.nextLine().toLowerCase();
+                }
+                if (continuar.equals("n")) {
+                    Sistema.mostrarMenu(this);
+                }
+                if (continuar.equals("s")) {
+                    VueloReserva vueloRI = new VueloReserva(vueloIda, TipoVuelo.IDA, as1, tipoTarifaIda); //VueloReserva de ida ************************************
                     reserva.getVueloReservaL().add(vueloRI);
-                    VueloReserva vueloRT = new VueloReserva(vueloRetorno, TipoVuelo.VUELTA, null, tipoTarifaRetorno); //VueloReserva de retorno ************************************
+                    VueloReserva vueloRT = new VueloReserva(vueloRetorno, TipoVuelo.VUELTA, as2, tipoTarifaRetorno); //VueloReserva de retorno ************************************
                     reserva.getVueloReservaL().add(vueloRT);
                     reserva.setPrecioSubtotal(reserva.getPrecioSubtotal() + precioVueloIda + precioVueloRetorno);
                     reserva.setPrecioMillasTotal(reserva.getPrecioMillasTotal() + vueloRI.getVuelo().getPrecioMillas() + vueloRT.getVuelo().getPrecioMillas());
@@ -193,6 +218,7 @@ public class Cliente extends Usuario {
                 }
             }
         }
+        Sistema.listaReservas.add(reserva);
         return reserva;
     }
 
@@ -204,49 +230,49 @@ public class Cliente extends Usuario {
         System.out.println("*****************************************");
         System.out.println("");
 
-        String op = "n";
-        while (op.equals("n")) {
+        System.out.println("--------------------------PAGO--------------------------");
+        System.out.println("");
+        System.out.println("Descripción:");
+        System.out.println("");
+        double subtotal = reserva.getPrecioSubtotal();
+        System.out.println("Subtotal: " + subtotal);
 
-            System.out.println("--------------------------PAGO--------------------------");
-            System.out.println("");
-            System.out.println("Descripción:");
-            System.out.println("");
-            double subtotal = reserva.getPrecioSubtotal();
-            System.out.println("Subtotal: " + subtotal);
+        double iva = subtotal * 0.12;
+        System.out.println(String.format("IVA: %.2f", iva));
+        double total = subtotal + iva;
+        System.out.println(String.format("TOTAL A PAGAR: %.2f", total));
 
-            double iva = subtotal * 0.12;
-            System.out.println(String.format("IVA: %.2f", iva));
-            double total = subtotal + iva;
-            System.out.println(String.format("TOTAL A PAGAR: %.2f", total));
+        System.out.println("");
+        System.out.println("Forma de Pago: ");
+        System.out.println("1. Tarjeta de Credito \n2. Millas");
 
-            System.out.println("");
-            System.out.println("Forma de Pago: ");
+        String fp = sc.nextLine();
+        while (!fp.equals("1")) { //validacion
+            System.out.println("Elija otra forma de pago: ");
             System.out.println("1. Tarjeta de Credito \n2. Millas");
-
-            String fp = sc.nextLine();
-            while (!fp.equals("1")) { //validacion
-                System.out.println("Elija otra forma de pago: ");
-                System.out.println("1. Tarjeta de Credito \n2. Millas");
-                fp = sc.nextLine();
-            }
+            fp = sc.nextLine();
+        }
+        System.out.println("Ingrese su tarjeta de credito: ");
+        String t = sc.nextLine();
+        while (!this.getNumTarjeta().equals(t)) {
+            System.out.println("Tarjeta Incorrecta.");
             System.out.println("Ingrese su tarjeta de credito: ");
-            String t = sc.nextLine();
-            while (!this.getNumTarjeta().equals(t)) {
-                System.out.println("Tarjeta Incorrecta.");
-                System.out.println("Ingrese su tarjeta de credito: ");
-                t = sc.nextLine();
-            }
-
-            System.out.println("¿Estas seguro de pagar el vuelo (s/n) ? ");
+            t = sc.nextLine();
+        }
+        System.out.println("¿Estas seguro de pagar el vuelo (s/n) ? ");
+        String op = sc.nextLine().toLowerCase();
+        while (!(op.equals("s") || op.equals("n"))) {
+            System.out.println("Opcion incorrecta.¿Estas seguro de pagar el vuelo (s/n)?. Recomendacion: Eliga una letra.");
             op = sc.nextLine().toLowerCase();
-            while (!(op.equals("s") || op.equals("n"))) {
-                System.out.println("Opcion incorrecta.¿Estas seguro de pagar el vuelo (s/n)?. Recomendacion: Eliga una letra.");
-                op = sc.nextLine().toLowerCase();
-            }
+        }
+        if (op.equals("n")) {
+            Sistema.mostrarMenu(this);
         }
         System.out.println("Has comprado tu vuelo. El codigo de reserva es: " + reserva.getCodigoReserva());
-        reserva.setPrecioSubtotal(reserva.getPrecioSubtotal() + (reserva.getPrecioSubtotal() / 0.1)); //aumento del 10% por pago en tarjeta
+        reserva.setPrecioSubtotal(reserva.getPrecioSubtotal() + (reserva.getPrecioSubtotal() * 0.1));//aumento del 10% por pago en tarjeta
     }
+    
+    
 
     public String getNumTarjeta() {
         return numTarjeta;
@@ -256,9 +282,6 @@ public class Cliente extends Usuario {
         this.numTarjeta = numTarjeta;
     }
 
-    @Override
-    public String toString() {
-        return super.toString() + "Cliente{" + "numTarjeta=" + numTarjeta + '}';
-    }
+   
 
 }

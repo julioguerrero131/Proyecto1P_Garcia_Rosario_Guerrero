@@ -43,15 +43,11 @@ public class Sistema {
         cargarItinerarios("itinerarios.txt");
         cargarVuelos("vuelos.txt");
         cargarUsuarios("usuarios.txt", "clientes.txt", "operadores.txt");
-        
-        
 
         Usuario usuario = iniciarSesion();
         mostrarMenu(usuario);
 
     }
-    
-    
 
     //Comienzo carga de Archivos
     public static void cargarAsientos(String archivoAsientos) {
@@ -64,7 +60,6 @@ public class Sistema {
         }
     }
 
-    
     public static void cargarAviones(String archivoAviones) {
         ArrayList<String> lineasAvion = ManejoArchivos.LeeFichero(archivoAviones);
 
@@ -150,7 +145,7 @@ public class Sistema {
                 for (String l : lineasClientes) {
                     String[] datosV = l.split(",");
                     if (datosV[0].equals(datosU[0])) {
-                        ClienteVIP clienteVip = new ClienteVIP(datosU[0], datosU[1], Integer.parseInt(datosU[2]), datosU[3], datosU[4], datosU[5], datosU[6].charAt(0), datosV[1], datosV[2], Integer.parseInt(datosV[3])+1000);
+                        ClienteVIP clienteVip = new ClienteVIP(datosU[0], datosU[1], Integer.parseInt(datosU[2]), datosU[3], datosU[4], datosU[5], datosU[6].charAt(0), datosV[1], datosV[2], Integer.parseInt(datosV[3]) + 1000);
                         listaUsuarios.add(clienteVip);
                     }
                 }
@@ -227,49 +222,22 @@ public class Sistema {
     //menu
     public static void mostrarMenu(Usuario usuario) {
         Scanner sc = new Scanner(System.in);
-        if (usuario.getRol() == 'O') {
+        String var = "inicio";
+        while (!var.equals("fin")) {
+            if (usuario.getRol() == 'O') {
+                Operador operador = (Operador) usuario;
+                int opcion = mostrarMenuOperador(); //acciones del operador
+                if (opcion == 1) {
+                    operador.consultarUsuario();
+                } else if (opcion == 2) {
+                    operador.consultarReserva();
+                } else if (opcion == 3) {
+                    var = "fin";
+                }
 
-            int opcion = mostrarMenuOperador(); //acciones del operador
-            switch (opcion) {
-                case 1:
-                case 2:
-                case 3:
-
+            } else {
             }
-
-        } else {
-
-            int opcion = mostrarMenuCliente(); //acciones de clientes
-            switch (opcion) {
-                case 1:
-
-                    //paso 1 y 2
-                    Cliente cliente = (Cliente) usuario;
-                    Reserva reserva = cliente.hacerReserva();
-
-                    //Paso 3
-                    usuario.ingresarDatosCliente();
-
-                    //Paso 4
-                    if (cliente instanceof ClienteVIP){
-                        ClienteVIP clientevip = (ClienteVIP) cliente;
-                        boolean val = false;
-                        while (val!=true){
-                            val = clientevip.hacerPago(reserva, clientevip.getMillas());
-                        }
-                    } else {
-                        cliente.hacerPago(reserva);
-                    }
-                    
-
-                    
-
-                case 2:
-                case 3:
-
-            }
-        }
-
+    }
     }
 
     public static int mostrarMenuCliente() {

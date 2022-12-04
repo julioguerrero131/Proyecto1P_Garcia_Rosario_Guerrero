@@ -31,6 +31,8 @@ public abstract class Usuario {
         this.rol = rol;
     }
 
+    public abstract void consultarReserva();
+
     public void ingresarDatosCliente() {
         System.out.println("");
         System.out.println("******************Paso 3*******************"); //PASO 3
@@ -38,8 +40,9 @@ public abstract class Usuario {
         System.out.println("");
 
         Scanner sc = new Scanner(System.in);
-        String continuar = "N";
-        while (continuar.equals("N")) {
+        String continuar = "s";
+        //(continuar.equals("n")) {
+        if(continuar.equals("s")){
             System.out.println("-------------------------DATOS PASAJERO---------------------------");
             String[] nombreApellido = this.getNombres().split(" ");
             System.out.println("Nombres: " + nombreApellido[0]);
@@ -107,13 +110,16 @@ public abstract class Usuario {
 //            }
 
             System.out.println("");
-            System.out.println("Desea guardar los datos del pasajero y continuar con el pago (S/N)? ");
-            continuar = sc.nextLine().toUpperCase();
-            while (!continuar.equals("S") && !continuar.equals("N")) { //validacion
-                System.out.println("Desea guardar los datos del pasajero y continuar con el pago (S/N)? ");
-                continuar = sc.nextLine().toUpperCase();
+            System.out.println("Desea guardar los datos del pasajero y continuar con el pago (s/n)? ");
+            continuar = sc.nextLine().toLowerCase();
+            while (!continuar.equals("s") && !continuar.equals("n")) { //validacion
+                System.out.println("Opcion incorrecta. Desea guardar los datos del pasajero y continuar con el pago (s/n)? ");
+                continuar = sc.nextLine().toLowerCase();
             }
-        }
+            if (continuar.equals("n")) {
+                Sistema.mostrarMenu(this);
+            }
+        } 
         System.out.println("Ha completado el paso 3");
     }
 

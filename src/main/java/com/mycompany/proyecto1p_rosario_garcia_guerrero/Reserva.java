@@ -107,7 +107,8 @@ public class Reserva {
 
     @Override
     public String toString() {
-        return "Reserva{" + "codigoReserva=" + codigoReserva + ", cliente=" + cliente + ", fechaCompra=" + fechaCompra + ", PrecioSubtotal=" + PrecioSubtotal + ", vueloReservaL=" + vueloReservaL + '}';
+        return "Nombres:" + cliente.nombres + "\nCedula: " + cliente.cedula + "\nVuelo: " + this.getVueloReservaL().get(0).getVuelo().getCodigoVuelo() + "\nHora Salida: " + this.getVueloReservaL().get(0).getVuelo().getItinerario().getHoraSalida() + "\nHora Llegada: " + this.getVueloReservaL().get(0).getVuelo().getItinerario().getHoraLlegada() + "\nAvion: " + this.getVueloReservaL().get(0).getVuelo().getAvion().getCodigoAvion() + "\nPuerta Embarque: " + ((int)(Math.random()*20) + "\n" + "\n") 
+                + "Nombres:" + cliente.nombres + "\nCedula: " + cliente.cedula + "\nVuelo: " + this.getVueloReservaL().get(1).getVuelo().getCodigoVuelo() + "\nHora Salida: " + this.getVueloReservaL().get(1).getVuelo().getItinerario().getHoraSalida() + "\nHora Llegada: " + this.getVueloReservaL().get(1).getVuelo().getItinerario().getHoraLlegada() + "\nAvion: " + this.getVueloReservaL().get(1).getVuelo().getAvion().getCodigoAvion() + "\nPuerta Embarque: " + ((int)(Math.random()*20)) + "\n" + "-------------------------------" + "\n";
     }
 
 }
