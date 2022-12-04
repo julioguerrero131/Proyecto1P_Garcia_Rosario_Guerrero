@@ -165,15 +165,16 @@ public class Cliente extends Usuario {
             //Si se devuelve un null no se guarda la reserva, sino, si:
             
             String codigoAvIda = vueloIda.getAvion().getCodigoAvion();
-            //String as1 = Vuelo.asignarAsiento(codigoAvIda);
-            System.out.println("Para tu vuelo de ida " + vueloIda.getCodigoVuelo() + " se te ha asignado el asiento " + Vuelo.asignarAsiento(codigoAvIda) );
-            
+            Asiento as1 = Vuelo.asignarAsiento(codigoAvIda);
             String codigoAvRetorno = vueloRetorno.getAvion().getCodigoAvion();
-            //String as2 = Vuelo.asignarAsiento(codigoAvRetorno);
-            System.out.println("Para tu vuelo de retorno " + vueloRetorno.getCodigoVuelo() + " se te ha asignado el asiento " + Vuelo.asignarAsiento(codigoAvRetorno) );
+            Asiento as2 = Vuelo.asignarAsiento(codigoAvRetorno);
             
-            Asiento asiento = null; //ELIMINAR
-            if (asiento == null) { //asiento sale del metodo //cambiar
+            if (as1 == null || as2==null) { //asiento sale del metodo //cambiar
+                System.out.println("No se encontraron asientos disponibles. Reserve nuevamente.");
+                continuar = "N";
+            }else{
+                System.out.println("Para tu vuelo de ida " + vueloIda.getCodigoVuelo() + " se te ha asignado el asiento " + as1.getNumAsiento());
+                System.out.println("Para tu vuelo de retorno " + vueloRetorno.getCodigoVuelo() + " se te ha asignado el asiento " + as2.getNumAsiento() );
                 if (continuar.equals("S")) {
                     VueloReserva vueloRI = new VueloReserva(vueloIda, TipoVuelo.IDA, null, tipoTarifaIda); //VueloReserva de ida ************************************
                     reserva.getVueloReservaL().add(vueloRI);
@@ -182,23 +183,15 @@ public class Cliente extends Usuario {
                     reserva.setPrecioSubtotal(reserva.getPrecioSubtotal() + precioVueloIda + precioVueloRetorno);
                     reserva.setPrecioMillasTotal(reserva.getPrecioMillasTotal() + vueloRI.getVuelo().getPrecioMillas() + vueloRT.getVuelo().getPrecioMillas());
                     System.out.println("Reserva Guardada con exito");
+                    String informacionida= (reserva.getCodigoReserva()+ "," + String.valueOf(reserva.getVueloReservaL().get(0).getVuelo().getCodigoVuelo())+"," + reserva.getCliente().nombres+ "," + reserva.getFechaCompra()+ "," +String.valueOf(reserva.getPrecioSubtotal()));
+                    manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", informacionida);
+                    String informacionret= (reserva.getCodigoReserva()+ "," + String.valueOf(reserva.getVueloReservaL().get(1).getVuelo().getCodigoVuelo())+ "," +reserva.getCliente().nombres+ "," + reserva.getFechaCompra()+ "," + String.valueOf(reserva.getPrecioSubtotal()) );
+                    manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", informacionret);
+                }else{
+                    System.out.println("No se guardo la reserva");
                 }
             }
-
-        }
-        String informacionida= (reserva.getCodigoReserva()+ "," + String.valueOf(reserva.getVueloReservaL().get(0).getVuelo().getCodigoVuelo())+"," + reserva.getCliente().nombres+ "," + reserva.getFechaCompra()+ "," +String.valueOf(reserva.getPrecioSubtotal()));
-        manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", informacionida);
-//        manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", String.valueOf(reserva.getVueloReservaL().get(0).getVuelo().getCodigoVuelo() +","));
-//        manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", reserva.getCliente().nombres +",");
-//        manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", reserva.getFechaCompra() +",");
-//        manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", String.valueOf(reserva.getPrecioSubtotal()) +"\n");
-        String informacionret= (reserva.getCodigoReserva()+ "," + String.valueOf(reserva.getVueloReservaL().get(1).getVuelo().getCodigoVuelo())+ "," +reserva.getCliente().nombres+ "," + reserva.getFechaCompra()+ "," + String.valueOf(reserva.getPrecioSubtotal()) );
-        manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", informacionret);
-//        manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", String.valueOf(reserva.getVueloReservaL().get(1).getVuelo().getCodigoVuelo()+","));
-//        manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", reserva.getCliente().nombres+",");
-//        manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", reserva.getFechaCompra()+",");
-//        manejoArchivos.ManejoArchivos.EscribirArchivo("Reserva.txt", String.valueOf(reserva.getPrecioSubtotal()) + "\n");        
-        
+        } 
         return reserva;
     }
 

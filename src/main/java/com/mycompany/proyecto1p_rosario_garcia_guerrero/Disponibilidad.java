@@ -9,5 +9,5 @@ package com.mycompany.proyecto1p_rosario_garcia_guerrero;
  * @author julio
  */
 public enum Disponibilidad {
-    S,N;
+    S,N,UNDEFINED;
 }
