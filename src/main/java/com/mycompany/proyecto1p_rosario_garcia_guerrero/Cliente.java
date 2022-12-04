@@ -271,8 +271,6 @@ public class Cliente extends Usuario {
         System.out.println("Has comprado tu vuelo. El codigo de reserva es: " + reserva.getCodigoReserva());
         reserva.setPrecioSubtotal(reserva.getPrecioSubtotal() + (reserva.getPrecioSubtotal() * 0.1));//aumento del 10% por pago en tarjeta
     }
-    
-    
 
     public String getNumTarjeta() {
         return numTarjeta;
@@ -282,6 +280,9 @@ public class Cliente extends Usuario {
         this.numTarjeta = numTarjeta;
     }
 
-   
+    @Override
+    public String toString() {
+        return this.nombres + ",CLIENTE ESTANDAR," + this.cedula;
+    }
 
 }

@@ -236,8 +236,31 @@ public class Sistema {
                 }
 
             } else {
+                int opcion = mostrarMenuCliente(); //acciones de clientes
+                Cliente cliente = (Cliente) usuario;
+                if (opcion == 1) {
+                    //paso 1 y 2
+                    Reserva reserva = cliente.hacerReserva();
+
+                    //Paso 3
+                    usuario.ingresarDatosCliente();
+
+                    //Paso 4
+                    if (cliente instanceof ClienteVIP) {
+                        ClienteVIP clientevip = (ClienteVIP) cliente;
+                        clientevip.hacerPago(reserva, clientevip.getMillas());
+                    } else {
+                        cliente.hacerPago(reserva);
+                    }
+                    System.out.println("Reserva finalizada");
+                } else if (opcion == 2) {
+                    cliente.consultarReserva();
+                } else if (opcion == 3) {
+                    var = "fin";
+                }
             }
-    }
+
+        }
     }
 
     public static int mostrarMenuCliente() {

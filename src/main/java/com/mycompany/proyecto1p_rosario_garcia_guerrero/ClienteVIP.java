@@ -106,6 +106,9 @@ public class ClienteVIP extends Cliente {
         this.millas = millas;
     }
 
-    
+    @Override
+    public String toString() {
+        return this.nombres + ",CLIENTE VIP " + this.tipoVIP + "," + this.cedula;
+    }
 
 }

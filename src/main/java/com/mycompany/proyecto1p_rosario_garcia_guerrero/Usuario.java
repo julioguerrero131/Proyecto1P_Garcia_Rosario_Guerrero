@@ -42,7 +42,7 @@ public abstract class Usuario {
         Scanner sc = new Scanner(System.in);
         String continuar = "s";
         //(continuar.equals("n")) {
-        if(continuar.equals("s")){
+        if (continuar.equals("s")) {
             System.out.println("-------------------------DATOS PASAJERO---------------------------");
             String[] nombreApellido = this.getNombres().split(" ");
             System.out.println("Nombres: " + nombreApellido[0]);
@@ -119,7 +119,7 @@ public abstract class Usuario {
             if (continuar.equals("n")) {
                 Sistema.mostrarMenu(this);
             }
-        } 
+        }
         System.out.println("Ha completado el paso 3");
     }
 
