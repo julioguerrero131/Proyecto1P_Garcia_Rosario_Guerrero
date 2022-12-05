@@ -201,14 +201,14 @@ public class Sistema {
     public static String ingresoSesionUsuario() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Usuario: ");
-        String u = sc.nextLine().toLowerCase();
+        String u = sc.nextLine();
         return u;
     }
 
     public static String ingresoSesionContraseña() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Contraseña: ");
-        String p = sc.nextLine().toLowerCase();
+        String p = sc.nextLine();
         return p;
     }
 
