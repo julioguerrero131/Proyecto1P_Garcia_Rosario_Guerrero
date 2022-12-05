@@ -29,13 +29,6 @@ public class Sistema {
     public static ArrayList<String> origenes = new ArrayList();
     public static ArrayList<String> destinos = new ArrayList();
 
-//    private static ArrayList<Reserva> listaReserva;
-//    private static ArrayList<String> vuelos = ManejoArchivos.LeeFichero("vuelos.txt");
-//    public static ArrayList<String> archivoUsuario = ManejoArchivos.LeeFichero("usuarios.txt");
-//    public static ArrayList<String> listaAsiento = ManejoArchivos.LeeFichero("asientos.txt");
-//    public static ArrayList<String> listaClientes = ManejoArchivos.LeeFichero("clientes.txt");
-//    public static ArrayList<String> listaOperadores = ManejoArchivos.LeeFichero("operadores.txt");
-//    public static ArrayList<Usuario>lista_usuarios= new ArrayList<>();
     
     /**ESte metodo sirve para ejecutar el programa
      * 

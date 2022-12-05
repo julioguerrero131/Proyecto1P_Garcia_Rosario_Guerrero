@@ -6,11 +6,13 @@
 package com.mycompany.proyecto1p_rosario_garcia_guerrero;
 
 /**
- *
  * @author julio
  */
 public class Proyecto1P_Rosario_Garcia_Guerrero {
 
+/**
+ * @param args, String 
+ */
     public static void main(String[] args) {
         System.out.println("Hello World!");
     }

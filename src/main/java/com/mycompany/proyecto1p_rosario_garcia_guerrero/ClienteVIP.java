@@ -3,14 +3,19 @@ package com.mycompany.proyecto1p_rosario_garcia_guerrero;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * @author Cliente Intel
+ */
 public class ClienteVIP extends Cliente {
 
     private String tipoVIP;
+
+    /**
+     */
     protected int millas;
 
     /**
      * Constructor que retorna un objeto de tipo ClienteVIP
-     * 
      * @param cedula atributo heredado de la clase Cliente
      * @param nombres atributo heredado de la clase Cliente
      * @param edad atributo heredado de la clase Cliente
@@ -32,7 +37,6 @@ public class ClienteVIP extends Cliente {
 
     /**
      * ESte metodo retorna la linea de texto en formato String
-     * 
      * @param reserva Objeto requerido para devolver String
      * @param millasCliente numero requerido para devolver String
      * @return String devuelve informacion acerca del pago
@@ -93,23 +97,36 @@ public class ClienteVIP extends Cliente {
 
         return "millas insuficientes";
     }
-
+/**
+ * 
+ * @return tipoVIP
+ */
     public String getTipoVIP() {
         return tipoVIP;
     }
-
+/**
+ * @param tipoVIP; String
+ */
     public void setTipoVIP(String tipoVIP) {
         this.tipoVIP = tipoVIP;
     }
 
+/**
+ * @return millas
+ */
     public int getMillas() {
         return millas;
     }
-
+/**
+ * @param millas; int
+ */
     public void setMillas(int millas) {
         this.millas = millas;
     }
 
+/**
+ * @return String
+ */
     @Override
     public String toString() {
         return this.nombres + ",CLIENTE VIP " + this.tipoVIP + "," + this.cedula;

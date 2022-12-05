@@ -8,15 +8,14 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
- *
  * @author julio
  */
 public class Operador extends Usuario {
 
     double sueldo;
     
-    /**Constructor que retorna un objeto de tipo Operador
-     * 
+    /**
+     * Constructor que retorna un objeto de tipo Operador
      * @param cedula atributo heredado de la clase Uusuario
      * @param nombres atributo heredado de la clase Uusuario
      * @param edad atributo heredado de la clase Uusuario
@@ -34,7 +33,8 @@ public class Operador extends Usuario {
     
     @Override
     
-    /**Este metodo retorna void
+    /**
+     * Este metodo retorna void
      * No recibe parametros
      * Retorna una lista de los vuelos y las reservas en cada uno
      */
@@ -78,15 +78,21 @@ public class Operador extends Usuario {
             }
         }
     }
-
+/**
+ * @return sueldo 
+ */
     public double getSueldo() {
         return sueldo;
     }
-
+/**
+ * @param sueldo, double 
+ */
     public void setSueldo(double sueldo) {
         this.sueldo = sueldo;
     }
-
+/**
+ * @return String 
+ */
     @Override
     public String toString() {
         return this.nombres + ",OPERADOR," + this.sueldo;

@@ -3,9 +3,15 @@ package com.mycompany.proyecto1p_rosario_garcia_guerrero;
 import java.util.ArrayList;
 import java.util.Scanner;
 import manejoArchivos.ManejoArchivos;
-
+/**
+ * 
+ * @author Cliente Intel
+ */
 public class Cliente extends Usuario {
 
+    /**
+     *
+     */
     protected String numTarjeta;
 
     /**
@@ -285,15 +291,21 @@ public class Cliente extends Usuario {
             t = sc.nextLine();
         }
     }
-
+    /**
+     * @return numTarjeta
+     */
     public String getNumTarjeta() {
         return numTarjeta;
     }
-
+/**
+ * @param numTarjeta, String
+ */
     public void setNumTarjeta(String numTarjeta) {
         this.numTarjeta = numTarjeta;
     }
-
+/**
+ * @return String
+ */
     @Override
     public String toString() {
         return this.nombres + ",CLIENTE ESTANDAR," + this.cedula;

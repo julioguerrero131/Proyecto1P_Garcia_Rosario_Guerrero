@@ -5,7 +5,6 @@
 package com.mycompany.proyecto1p_rosario_garcia_guerrero;
 
 /**
- *
  * @author Cliente Intel
  */
 public class Asiento {

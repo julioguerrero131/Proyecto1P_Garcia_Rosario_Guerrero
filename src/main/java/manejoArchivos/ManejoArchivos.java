@@ -10,11 +10,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 /**
- *
  * @author Verónica
  */
 public class ManejoArchivos {
-
+ /**
+  * @param nombrearchivo, String
+  * @return ArrayList String
+  */
     public static ArrayList<String> LeeFichero(String nombrearchivo) {
         ArrayList<String> lineas = new ArrayList<>();
         File archivo = null;
@@ -53,7 +55,10 @@ public class ManejoArchivos {
         return lineas;
 
     }
-
+/**
+ * @param nombreArchivo, String
+ * @param linea, String
+ */
     public static void EscribirArchivo(String nombreArchivo, String linea) {
 
         FileWriter fichero = null;

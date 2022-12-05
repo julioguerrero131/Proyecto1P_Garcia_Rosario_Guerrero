@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- *
  * @author Cliente Intel
  */
 public class Itinerario {
@@ -41,7 +40,6 @@ public class Itinerario {
      * Metodo que retorna el indice de tipo int
      * @param lista; de tipo ArrayList String 
      * @return int; Devuelve un indice seleccionado por el Cliente para el Origen
-     * 
      */
     public static int elegirOrigen(ArrayList<String> lista) {
         System.out.println("------ORIGEN-----");
@@ -77,55 +75,83 @@ public class Itinerario {
         return op;
     }
 
+    /**
+     * @return codigoItinerario
+     */
     //getters y setters
     public String getCodigoItinerario() {
         return codigoItinerario;
     }
-
+/**
+ * @param codigoItinerario, String
+ */
     public void setCodigoItinerario(String codigoItinerario) {
         this.codigoItinerario = codigoItinerario;
     }
-
+/**
+ * @return origen
+ */
     public String getOrigen() {
         return origen;
     }
-
+/**
+ * @param origen, String
+ */
     public void setOrigen(String origen) {
         this.origen = origen;
     }
-
+/**
+ * @return destino
+ */
     public String getDestino() {
         return destino;
     }
-
+/**
+ * @param destino String
+ */
     public void setDestino(String destino) {
         this.destino = destino;
     }
-
+/**
+ * @return String
+ */
     public String getHoraSalida() {
         return horaSalida;
     }
-
+/**
+ * @param horaSalida, String
+ */
     public void setHoraSalida(String horaSalida) {
         this.horaSalida = horaSalida;
     }
-
+/**
+ * @return String
+ */
     public String getHoraLlegada() {
         return horaLlegada;
     }
-
+/**
+ * @param horaLlegada, String
+ */
     public void setHoraLlegada(String horaLlegada) {
         this.horaLlegada = horaLlegada;
     }
-
+/**
+ * @return String
+ */
     public String getDuracion() {
         return duracion;
     }
-
+/**
+ * @param duracion, String
+ */
     public void setDuracion(String duracion) {
         this.duracion = duracion;
     }
 
+/**
+ * @return String
+ */
     @Override
     public String toString() {
         return "Itinerario{" + "codigoItinerario=" + codigoItinerario + ", origen=" + origen + ", destino=" + destino + ", horaSalida=" + horaSalida + ", horaLlegada=" + horaLlegada + ", duracion=" + duracion + '}';
