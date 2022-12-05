@@ -7,6 +7,7 @@ package com.mycompany.proyecto1p_rosario_garcia_guerrero;
 /**
  *
  * @author User
+ * Clase de tipo enum, sirve para poder clasificar el tipo de tarifa seleccionado por el cliente
  */
 public enum TipoTarifa {
     ECONOMY,PREMIUMECONOMY, PREMIUMBUSINESS, UNDEFINED;

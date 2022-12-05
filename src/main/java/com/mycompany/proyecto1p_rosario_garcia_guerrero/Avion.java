@@ -13,7 +13,12 @@ public class Avion {
     private String codigoAvion;
     private int capacidad;
     private ArrayList<Asiento> asientosAvion = new ArrayList(); 
-
+    /**
+     * Constructor que retorna un objeto de tipo Avion
+     * @param codigoAvion; de tipo String
+     * @param capacidad; de tipo int
+     */
+    
     public Avion(String codigoAvion, int capacidad) {
         this.codigoAvion = codigoAvion;
         this.capacidad = capacidad;

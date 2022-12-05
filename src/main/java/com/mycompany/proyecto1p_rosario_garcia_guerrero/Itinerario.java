@@ -19,7 +19,16 @@ public class Itinerario {
     private String horaSalida;
     private String horaLlegada;
     private String duracion;
-
+    
+    /**
+     * Constructor que retorna un objeto de tipo Itinerario
+     * @param codigoItinerario; de tipo String
+     * @param origen; de tipo String
+     * @param destino; de tipo String
+     * @param horaSalida; de tipo String
+     * @param horaLlegada; de tipo String
+     * @param duracion; de tipo String
+     */
     public Itinerario(String codigoItinerario, String origen, String destino, String horaSalida, String horaLlegada, String duracion) {
         this.codigoItinerario = codigoItinerario;
         this.origen = origen;
@@ -28,7 +37,12 @@ public class Itinerario {
         this.horaLlegada = horaLlegada;
         this.duracion = duracion;
     }
-
+    /**
+     * Metodo que retorna el indice de tipo int
+     * @param lista; de tipo ArrayList String 
+     * @return int; Devuelve un indice seleccionado por el Cliente para el Origen
+     * 
+     */
     public static int elegirOrigen(ArrayList<String> lista) {
         System.out.println("------ORIGEN-----");
         int cont = 1;
@@ -42,6 +56,12 @@ public class Itinerario {
         sc.nextLine();
         return op;
     }
+    
+    /**
+     * Metodo que retorna un indice de tipo int 
+     * @param lista; de tipo ArrayList String 
+     * @return int; Duvuelve indice seleccionado por el Cliente para el Destino
+     */
 
     public static int elegirDestino(ArrayList<String> lista) {
         System.out.println("------DESTINO-----");

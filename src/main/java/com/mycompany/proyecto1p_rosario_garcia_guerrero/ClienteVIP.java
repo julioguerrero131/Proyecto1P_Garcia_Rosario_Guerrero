@@ -13,7 +13,8 @@ public class ClienteVIP extends Cliente {
         this.tipoVIP = tipoVIP;
         this.millas = millas;
     }
-
+    
+ 
     public String hacerPago(Reserva reserva, int millasCliente) {
         Scanner sc = new Scanner(System.in);
 

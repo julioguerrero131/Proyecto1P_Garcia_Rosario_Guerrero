@@ -14,6 +14,7 @@ import java.util.concurrent.ThreadLocalRandom;
  *
  * @author Cliente Intel
  */
+
 public class Reserva {
 
     private String codigoReserva;
@@ -22,6 +23,14 @@ public class Reserva {
     private double PrecioSubtotal;
     private int precioMillasTotal;
     private ArrayList<VueloReserva> vueloReservaL = new ArrayList();
+    
+    /**
+     * Constructor de la clase Reserva, crea un objeto de tipo Reserva
+     * @param cliente; de tipo Cliente
+     * @param PrecioSubtotal; de tipo double
+     * @param precioMillasTotal; de tipo int
+     * @param vueloReservaL; de tipo ArrayList VueloReserva
+     */
 
     public Reserva(Cliente cliente, double PrecioSubtotal, int precioMillasTotal, ArrayList<VueloReserva> vueloReservaL) {
         this.codigoReserva = codigoAleatorio();
@@ -33,7 +42,10 @@ public class Reserva {
         this.vueloReservaL = vueloReservaL;
     }
 
-    
+    /**
+     * Metodo que genera un codigo aleatorio de 5 letras
+     * @return cadena; cadena de caracteres de 5 letras  
+     */
 
     public static String codigoAleatorio() {  //cadena aleatoria para el codigo
         int longitud = 5;
@@ -48,6 +60,13 @@ public class Reserva {
         }
         return cadena;
     }
+    
+    /**
+     * Metodo que retornar un indice aleatorio de tipo int.
+     * @param minimo; de tipo int
+     * @param maximo; de tipo int
+     * @return indice; Devuelve un indice aleatorio
+     */
 
     public static int numeroAleatorioEnRango(int minimo, int maximo) {
         // nextInt regresa en rango pero con límite superior exclusivo, por eso sumamos 1

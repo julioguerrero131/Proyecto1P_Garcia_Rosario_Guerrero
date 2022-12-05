@@ -21,7 +21,16 @@ public class Vuelo extends Sistema {
     private Itinerario itinerario;
     private double precio;
     private int precioMillas;
-
+    
+    /**
+     * Constructor que genera un objeto de tipo Vuelo
+     * @param codigoVuelo; de tipo String
+     * @param fechaSalida; de tipo String
+     * @param fechaLlegada; de tipo String
+     * @param precio; de tipo double
+     * @param precioMillas ; de tipo int
+     */
+    
     public Vuelo(String codigoVuelo, String fechaSalida, String fechaLlegada, double precio, int precioMillas) {
         this.codigoVuelo = codigoVuelo;
         this.fechaSalida = fechaSalida;
@@ -29,6 +38,12 @@ public class Vuelo extends Sistema {
         this.precio = precio;
         this.precioMillas = precioMillas;
     }
+    
+    /**
+     * Metodo que retorna un asiento dependiendo de su Disponibilidad
+     * @param codigoAv; de tipo String
+     * @return asiento; Retorna un asiento si existe disponibilidad, null si no existe disponibilidad
+     */
      
     //String codigoAv = avion.getCodigoAvion();
     public static Asiento asignarAsiento(String codigoAv){

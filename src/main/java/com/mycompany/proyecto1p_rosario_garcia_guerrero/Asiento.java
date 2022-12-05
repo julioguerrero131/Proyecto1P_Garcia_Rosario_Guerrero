@@ -13,7 +13,15 @@ public class Asiento {
     private String codigoAvion;
     private String numAsiento;
     private Disponibilidad disponible;
-
+    
+    
+    /**
+     * Constructor que sirve para crear objetos de tipo Asiento
+     * @param codigoAvion; de tipo String
+     * @param numAsiento; de tipo String
+     * @param disponible; de tipo Disponibilidad
+     */
+    
     public Asiento(String codigoAvion, String numAsiento, Disponibilidad disponible) {
         this.codigoAvion = codigoAvion;
         this.numAsiento = numAsiento;

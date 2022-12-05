@@ -163,14 +163,22 @@ public class Sistema {
         String u = sc.nextLine().toLowerCase();
         return u;
     }
-
+    
+    /**
+     * Metodo que retorna un String indicando la contraseña ingresada por el Usuario
+     * @return valor de tipo String, indicando contraseña ingresada
+     */
     public static String ingresoSesionContraseña() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Contraseña: ");
         String p = sc.nextLine().toLowerCase();
         return p;
     }
-
+    /**
+     * Metodo que retorna un boolean, verifica si el usuario ingresado es correcto
+     * @param u; de tipo String
+     * @return boolean, indica True si usuario es correcto, False si no es correcto
+     */
     public static boolean verificarUsuario(String u) { //
         for (Usuario usu : listaUsuarios) {
             if (u.equals(usu.getUser())) {
@@ -179,7 +187,11 @@ public class Sistema {
         }
         return false;
     }
-
+    /**
+     * Metodo que retorna un boolean, verifica si la contraseña ingresada es correcta
+     * @param p; de tipo String
+     * @return boolean, indica True si contraseña es correcta, False si no es correcta
+     */
     public static boolean verificarContraseña(String p) {
         for (Usuario usu : listaUsuarios) {
             if (p.equals(usu.getPassword())) {
@@ -188,6 +200,11 @@ public class Sistema {
         }
         return false;
     }
+    
+    /**
+     * Metodo que permite al Usuario ingresar al Sistema
+     * @return retorna un objeto de tipo Usuario dependiendo de su usuario y contraseña
+     */
 
     public static Usuario iniciarSesion() {
         System.out.println("+++++++++++++++++++++++++++++++++++\n");
@@ -220,7 +237,11 @@ public class Sistema {
 //        if ()
         return null;
     }
-
+    /**
+     * Metodo que retorna un booleano, Sirve para poder verificar si el Usuario desea continuar usando el Menú y el programa
+     * @param usuario; de tipo Usuario
+     * @return boolean, verifica si desea continuar usuando el programa
+     */
     //menu
     public static boolean mostrarMenu(Usuario usuario) {
         Scanner sc = new Scanner(System.in);
@@ -385,7 +406,10 @@ public class Sistema {
 
         return false;
     }
-
+    /**
+     * Metodo que retorna un indice de tipo int seleccionado por el Cliente
+     * @return indice de tipo int
+     */
     public static int mostrarMenuCliente() {
         Scanner sc = new Scanner(System.in);
         System.out.println("1. Comprar tickets aereos.");
@@ -397,7 +421,10 @@ public class Sistema {
         sc.nextLine();
         return op;
     }
-
+    /**
+     * Metodo que retorna un indice de tipo int seleccionado por el Operador
+     * @return; indice tipo int
+     */
     public static int mostrarMenuOperador() {
         Scanner sc = new Scanner(System.in);
         System.out.println("1. Consultar Usuarios.");

@@ -7,7 +7,9 @@ package com.mycompany.proyecto1p_rosario_garcia_guerrero;
 /**
  *
  * @author julio
+ * Clase enum que sirve clasificar la disponibilidad de un asiento
  */
+
 public enum Disponibilidad {
     S,N,UNDEFINED;
 }

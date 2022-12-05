@@ -14,7 +14,14 @@ public class VueloReserva {
     private TipoVuelo tipoVuelo;
     private Asiento asiento;
     private TipoTarifa tipoTarifa;
-
+    
+    /**
+     * Constructor que retorna un objeto de tipo VueloReserva
+     * @param vuelo; De tipo Vuelo
+     * @param tipoVuelo; de tipo TipoVuelo
+     * @param asiento; de tipo Asiento
+     * @param tipoTarifa; de tipo tipoTarifa
+     */
     public VueloReserva(Vuelo vuelo, TipoVuelo tipoVuelo, Asiento asiento, TipoTarifa tipoTarifa) { 
         this.vuelo = vuelo;
         this.tipoVuelo = tipoVuelo;
