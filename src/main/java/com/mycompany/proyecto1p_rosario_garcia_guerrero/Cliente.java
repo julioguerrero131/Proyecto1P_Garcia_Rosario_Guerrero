@@ -13,12 +13,33 @@ public class Cliente extends Usuario {
         this.numTarjeta = numTarjeta;
     }
 
-    @Override
+@Override
     public void consultarReserva() {
-        for (Reserva reserva1 : Sistema.listaReservas) {
-            if (reserva1.getCliente().getCedula().equals(this.cedula)) {
-                System.out.println(reserva1.toString());
+        ArrayList<String> listaR = ManejoArchivos.LeeFichero("consultarReserva.txt");
+
+
+
+       for (String l : listaR) {
+            String[] lineasSeparadas = l.split(",");
+            String nombres1 = lineasSeparadas[0];
+            if (nombres1.equals(this.nombres)) {
+
+
+
+               System.out.println("Nombres: " + lineasSeparadas[0]);
+                System.out.println("Cedula: " + lineasSeparadas[1]);
+                System.out.println("Vuelo: " + lineasSeparadas[2]);
+                System.out.println("Hora Salida: " + lineasSeparadas[3]);
+                System.out.println("Hora Llegada: " + lineasSeparadas[4]);
+                System.out.println("Avion: " + lineasSeparadas[5]);
+                System.out.println("Puerta de Embarque: " + lineasSeparadas[6]);
+                System.out.print("---------------" + "\n");
+                //}
             }
+//            } else if(!(nombres1.equals(this.nombres))){
+//                System.out.println("No tiene reservas asignadas");
+//
+//            }
         }
     }
 

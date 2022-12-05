@@ -303,6 +303,9 @@ public class Sistema {
                                         String informacionret = (reserva.getCodigoReserva() + "," + String.valueOf(reserva.getVueloReservaL().get(1).getVuelo().getCodigoVuelo()) + "," + reserva.getCliente().nombres + "," + reserva.getFechaCompra() + "," + String.valueOf(reserva.getPrecioSubtotal()));
                                         manejoArchivos.ManejoArchivos.EscribirArchivo("reservas.txt", informacionret);
                                         listaReservas.add(reserva);
+                                        //escritura archivo consultarReservas.txt
+                                        manejoArchivos.ManejoArchivos.EscribirArchivo("consultarReserva.txt", reserva.getCliente().getNombres() + "," + reserva.getCliente().getCedula() + "," + reserva.getVueloReservaL().get(0).getVuelo().getCodigoVuelo() + "," + reserva.getVueloReservaL().get(0).getVuelo().getItinerario().getHoraSalida() + "," + reserva.getVueloReservaL().get(0).getVuelo().getItinerario().getHoraLlegada() + "," + reserva.getVueloReservaL().get(0).getVuelo().getAvion().getCodigoAvion() + "," + String.valueOf((int) (Math.random() * 20)));
+                                        manejoArchivos.ManejoArchivos.EscribirArchivo("consultarReserva.txt", reserva.getCliente().getNombres() + "," + reserva.getCliente().getCedula() + "," + reserva.getVueloReservaL().get(1).getVuelo().getCodigoVuelo() + "," + reserva.getVueloReservaL().get(1).getVuelo().getItinerario().getHoraSalida() + "," + reserva.getVueloReservaL().get(1).getVuelo().getItinerario().getHoraLlegada() + "," + reserva.getVueloReservaL().get(1).getVuelo().getAvion().getCodigoAvion() + "," + String.valueOf((int) (Math.random() * 20)));
 
                                     } else if (pago.equals("pago hecho en millas")) {
                                         clientevip.setMillas(clientevip.getMillas() - reserva.getPrecioMillasTotal());
@@ -314,6 +317,9 @@ public class Sistema {
                                         String informacionret = (reserva.getCodigoReserva() + "," + String.valueOf(reserva.getVueloReservaL().get(1).getVuelo().getCodigoVuelo()) + "," + reserva.getCliente().nombres + "," + reserva.getFechaCompra() + "," + String.valueOf(reserva.getPrecioSubtotal()));
                                         manejoArchivos.ManejoArchivos.EscribirArchivo("reservas.txt", informacionret);
                                         listaReservas.add(reserva);
+                                        //escritura archivo consultarReservas.txt
+                                        manejoArchivos.ManejoArchivos.EscribirArchivo("consultarReserva.txt", reserva.getCliente().getNombres() + "," + reserva.getCliente().getCedula() + "," + reserva.getVueloReservaL().get(0).getVuelo().getCodigoVuelo() + "," + reserva.getVueloReservaL().get(0).getVuelo().getItinerario().getHoraSalida() + "," + reserva.getVueloReservaL().get(0).getVuelo().getItinerario().getHoraLlegada() + "," + reserva.getVueloReservaL().get(0).getVuelo().getAvion().getCodigoAvion() + "," + String.valueOf((int) (Math.random() * 20)));
+                                        manejoArchivos.ManejoArchivos.EscribirArchivo("consultarReserva.txt", reserva.getCliente().getNombres() + "," + reserva.getCliente().getCedula() + "," + reserva.getVueloReservaL().get(1).getVuelo().getCodigoVuelo() + "," + reserva.getVueloReservaL().get(1).getVuelo().getItinerario().getHoraSalida() + "," + reserva.getVueloReservaL().get(1).getVuelo().getItinerario().getHoraLlegada() + "," + reserva.getVueloReservaL().get(1).getVuelo().getAvion().getCodigoAvion() + "," + String.valueOf((int) (Math.random() * 20)));
                                     }
                                 }
 
@@ -335,6 +341,9 @@ public class Sistema {
                                     String informacionret = (reserva.getCodigoReserva() + "," + String.valueOf(reserva.getVueloReservaL().get(1).getVuelo().getCodigoVuelo()) + "," + reserva.getCliente().nombres + "," + reserva.getFechaCompra() + "," + String.valueOf(reserva.getPrecioSubtotal()));
                                     manejoArchivos.ManejoArchivos.EscribirArchivo("reservas.txt", informacionret);
                                     listaReservas.add(reserva);
+                                    //escritura archivo consultarReservas.txt
+                                    manejoArchivos.ManejoArchivos.EscribirArchivo("consultarReserva.txt", reserva.getCliente().getNombres() + "," + reserva.getCliente().getCedula() + "," + reserva.getVueloReservaL().get(0).getVuelo().getCodigoVuelo() + "," + reserva.getVueloReservaL().get(0).getVuelo().getItinerario().getHoraSalida() + "," + reserva.getVueloReservaL().get(0).getVuelo().getItinerario().getHoraLlegada() + "," + reserva.getVueloReservaL().get(0).getVuelo().getAvion().getCodigoAvion() + "," + String.valueOf((int) (Math.random() * 20)));
+                                    manejoArchivos.ManejoArchivos.EscribirArchivo("consultarReserva.txt", reserva.getCliente().getNombres() + "," + reserva.getCliente().getCedula() + "," + reserva.getVueloReservaL().get(1).getVuelo().getCodigoVuelo() + "," + reserva.getVueloReservaL().get(1).getVuelo().getItinerario().getHoraSalida() + "," + reserva.getVueloReservaL().get(1).getVuelo().getItinerario().getHoraLlegada() + "," + reserva.getVueloReservaL().get(1).getVuelo().getAvion().getCodigoAvion() + "," + String.valueOf((int) (Math.random() * 20)));
                                 }
                             }
                         }
