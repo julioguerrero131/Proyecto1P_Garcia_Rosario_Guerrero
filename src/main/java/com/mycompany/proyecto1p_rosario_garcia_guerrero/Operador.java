@@ -14,34 +14,31 @@ import java.util.ArrayList;
 public class Operador extends Usuario {
 
     double sueldo;
+    
+    /**Constructor que retorna un objeto de tipo Operador
+     * 
+     * @param cedula atributo heredado de la clase Uusuario
+     * @param nombres atributo heredado de la clase Uusuario
+     * @param edad atributo heredado de la clase Uusuario
+     * @param mail atributo heredado de la clase Uusuario
+     * @param user atributo heredado de la clase Uusuario
+     * @param password atributo heredado de la clase Uusuario
+     * @param rol atributo heredado de la clase Uusuario
+     * @param sueldo atributo propio de la clase Operador
+     */
 
     public Operador(String cedula, String nombres, int edad, String mail, String user, String password, char rol, double sueldo) {
         super(cedula, nombres, edad, mail, user, password, rol);
         this.sueldo = sueldo;
     }
-
-    //public void consultarReserva(){
-//         ArrayList<String> listaCodigos = new ArrayList<>();
-//         for(Vuelo v: Sistema.listaVuelos){
-//             listaCodigos.add(v.getCodigoVuelo());
-//         }
-//         for (String codigo: listaCodigos){
-//             int contador = 0;
-//             for(Reserva r: Sistema.listaReservas){
-//                 if(codigo.equals(r.getVueloReservaL().get(0).getVuelo().getCodigoVuelo())){
-//                     contador++;
-//                 }
-//                 if(codigo.equals(r.getVueloReservaL().get(1).getVuelo().getCodigoVuelo())){
-//                     contador++;
-//                 }
-//             }
-//             System.out.println("Vuelo: " + codigo);
-//             System.out.println("Cantidad Reservados: " + contador);
-//             System.out.println("-----------------------");
-//             
-//         }
-    //}
+    
     @Override
+    
+    /**Este metodo retorna void
+     * No recibe parametros
+     * Retorna una lista de los vuelos y las reservas en cada uno
+     */
+    
     public void consultarReserva() {
         ArrayList<String> lineas = ManejoArchivos.LeeFichero("reservas.txt");
         ArrayList<String> listaCodigosR = new ArrayList<>();
@@ -61,6 +58,11 @@ public class Operador extends Usuario {
             System.out.println("-----------------------");
         }
     }
+    
+    /**Este metodo retorna void
+     * No recibe parametros
+     * Retorna una lista de los usuarios 
+     */
     
     public void consultarUsuario(){
         for(Usuario u: Sistema.listaUsuarios){
