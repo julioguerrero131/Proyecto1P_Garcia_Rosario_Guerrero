@@ -74,56 +74,94 @@ public class Reserva {
 
     }
 
+    /**Metodo get
+     * @return codigoReserva valor a retornar
+     */
     public String getCodigoReserva() {
         return codigoReserva;
     }
 
+    /**Metodo get
+     * @return cliente valor a retornar
+     */
+    
     public Cliente getCliente() {
         return cliente;
     }
 
+    /**Metodo get
+     * @return fechaCompra valor a retornar
+     */
     public String getFechaCompra() {
         return fechaCompra;
     }
 
+    /** Metodo get
+     * @return PrecioSubtotal valor a retornar
+     */
     public double getPrecioSubtotal() {
         return PrecioSubtotal;
     }
 
+    /** Metodo get
+     * @return vueloReservaL valor a retornar
+     */
     public ArrayList<VueloReserva> getVueloReservaL() {
         return vueloReservaL;
     }
 
+    /** Metodo set
+     * @param codigoReserva valor a retornar
+     */
     public void setCodigoReserva(String codigoReserva) {
         this.codigoReserva = codigoReserva;
     }
 
+    /** Metodo set
+     * @param cliente valor a retornar
+     */
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
+    /** Metodo set
+     * @param fechaCompra valor a retornar
+     */
     public void setFechaCompra(String fechaCompra) {
         this.fechaCompra = fechaCompra;
     }
 
+    /** Metodo set
+     * @param PrecioSubtotal valor a retornar
+     */
     public void setPrecioSubtotal(double PrecioSubtotal) {
         this.PrecioSubtotal = PrecioSubtotal;
     }
 
+    /** Metodo set
+     * @param vueloReservaL valor a retornar
+     */
     public void setVueloReservaL(ArrayList<VueloReserva> vueloReservaL) {
         this.vueloReservaL = vueloReservaL;
     }
 
+    /** Metodo Get
+     * @return precioMillasTotal valor a retornar
+     */
     public int getPrecioMillasTotal() {
         return precioMillasTotal;
     }
 
+    /** Metodo set
+     * @param precioMillasTotal valor a retornar
+     */
     public void setPrecioMillasTotal(int precioMillasTotal) {
         this.precioMillasTotal = precioMillasTotal;
     }
     
-    
-
+    /** Metodo toString
+     * @return informacion Objeto valor a retornar
+     */
     @Override
     public String toString() {
         return "Nombres:" + cliente.nombres + "\nCedula: " + cliente.cedula + "\nVuelo: " + this.getVueloReservaL().get(0).getVuelo().getCodigoVuelo() + "\nHora Salida: " + this.getVueloReservaL().get(0).getVuelo().getItinerario().getHoraSalida() + "\nHora Llegada: " + this.getVueloReservaL().get(0).getVuelo().getItinerario().getHoraLlegada() + "\nAvion: " + this.getVueloReservaL().get(0).getVuelo().getAvion().getCodigoAvion() + "\nPuerta Embarque: " + ((int)(Math.random()*20) + "\n" + "\n") 

@@ -10,5 +10,18 @@ package com.mycompany.proyecto1p_rosario_garcia_guerrero;
  * Clase de tipo enum, sirve para poder clasificar el vuelo sea de ida o vuelta
  */
 public enum TipoVuelo {
-    IDA, VUELTA, UNDEFINED;
+    /**
+     * ida
+     */
+    IDA, 
+
+    /**
+     *vuelta
+     */
+    VUELTA,
+
+    /**
+     * Undefined, no definido
+     */
+    UNDEFINED;
 }

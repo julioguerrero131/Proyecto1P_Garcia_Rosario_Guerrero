@@ -106,62 +106,107 @@ public abstract class Usuario {
         System.out.println("Numero de Documento:" + this.getCedula());
     }
 
+    /**Metodod get
+     * @return cedula valor a retornar
+     */
     public String getCedula() {
         return cedula;
     }
 
+    /**Metodod set
+     * @param cedula valor a retornar
+     */
     public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 
+    /**Metodod get
+     * @return nombres valor a retornar
+     */
     public String getNombres() {
         return nombres;
     }
 
+    /**Metodod set
+     * @param nombres valor a retornar
+     */
     public void setNombres(String nombres) {
         this.nombres = nombres;
     }
 
+    /**Metodod get
+     * @return edad valor a retornar
+     */
     public int getEdad() {
         return edad;
     }
 
+    /**Metodod set
+     * @param edad valor a retornar
+     */
     public void setEdad(int edad) {
         this.edad = edad;
     }
 
+    /**Metodod get
+     * @return mail valor a retornar
+     */
     public String getMail() {
         return mail;
     }
 
+    /**Metodod set
+     * @param mail valor a retornar
+     */
     public void setMail(String mail) {
         this.mail = mail;
     }
 
+    /**Metodod get
+     * @return user valor a retornar
+     */
     public String getUser() {
         return user;
     }
 
+    /**Metodod set
+     * @param user valor a retornar
+     */
     public void setUser(String user) {
         this.user = user;
     }
 
+    /**Metodod get
+     * @return password valor a retornar
+     */
     public String getPassword() {
         return password;
     }
 
+    /**Metodod set
+     * @param password valor a retornar
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**Metodod get
+     * @return rol valor a retornar
+     */
     public char getRol() {
         return rol;
     }
 
+    /**Metodod set
+     * @param rol valor a retornar
+     */
     public void setRol(char rol) {
         this.rol = rol;
     }
 
+    /**Metodod toString
+     * @return informacion valor a retornar
+     */
     @Override
     public String toString() {
         return "Usuario{" + "cedula=" + cedula + ", nombres=" + nombres + ", edad=" + edad + ", mail=" + mail + ", user=" + user + ", password=" + password + ", rol=" + rol + '}';
