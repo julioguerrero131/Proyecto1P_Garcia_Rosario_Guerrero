@@ -306,7 +306,15 @@ public class Sistema {
                                         //escritura archivo consultarReservas.txt
                                         manejoArchivos.ManejoArchivos.EscribirArchivo("consultarReserva.txt", reserva.getCliente().getNombres() + "," + reserva.getCliente().getCedula() + "," + reserva.getVueloReservaL().get(0).getVuelo().getCodigoVuelo() + "," + reserva.getVueloReservaL().get(0).getVuelo().getItinerario().getHoraSalida() + "," + reserva.getVueloReservaL().get(0).getVuelo().getItinerario().getHoraLlegada() + "," + reserva.getVueloReservaL().get(0).getVuelo().getAvion().getCodigoAvion() + "," + String.valueOf((int) (Math.random() * 20)));
                                         manejoArchivos.ManejoArchivos.EscribirArchivo("consultarReserva.txt", reserva.getCliente().getNombres() + "," + reserva.getCliente().getCedula() + "," + reserva.getVueloReservaL().get(1).getVuelo().getCodigoVuelo() + "," + reserva.getVueloReservaL().get(1).getVuelo().getItinerario().getHoraSalida() + "," + reserva.getVueloReservaL().get(1).getVuelo().getItinerario().getHoraLlegada() + "," + reserva.getVueloReservaL().get(1).getVuelo().getAvion().getCodigoAvion() + "," + String.valueOf((int) (Math.random() * 20)));
-
+                                        
+                                        //escritura archivo pagos.txt
+                                        int num1 = (int) (Math.random() * 9);
+                                        int num2 = (int) (Math.random() * 9);
+                                        int num3 = (int) (Math.random() * 9);
+                                        int num4 = (int) (Math.random() * 9);
+                                        String idPago = String.valueOf(num1) + String.valueOf(num2) + String.valueOf(num3) + String.valueOf(num4);
+                                        manejoArchivos.ManejoArchivos.EscribirArchivo("pagos.txt", idPago + "," + reserva.getCodigoReserva() + "," + String.format("%.2f", reserva.getPrecioSubtotal()) + ",TC");   
+                                        
                                     } else if (pago.equals("pago hecho en millas")) {
                                         clientevip.setMillas(clientevip.getMillas() - reserva.getPrecioMillasTotal());
                                         reserva.setCliente(clientevip);
@@ -320,7 +328,16 @@ public class Sistema {
                                         //escritura archivo consultarReservas.txt
                                         manejoArchivos.ManejoArchivos.EscribirArchivo("consultarReserva.txt", reserva.getCliente().getNombres() + "," + reserva.getCliente().getCedula() + "," + reserva.getVueloReservaL().get(0).getVuelo().getCodigoVuelo() + "," + reserva.getVueloReservaL().get(0).getVuelo().getItinerario().getHoraSalida() + "," + reserva.getVueloReservaL().get(0).getVuelo().getItinerario().getHoraLlegada() + "," + reserva.getVueloReservaL().get(0).getVuelo().getAvion().getCodigoAvion() + "," + String.valueOf((int) (Math.random() * 20)));
                                         manejoArchivos.ManejoArchivos.EscribirArchivo("consultarReserva.txt", reserva.getCliente().getNombres() + "," + reserva.getCliente().getCedula() + "," + reserva.getVueloReservaL().get(1).getVuelo().getCodigoVuelo() + "," + reserva.getVueloReservaL().get(1).getVuelo().getItinerario().getHoraSalida() + "," + reserva.getVueloReservaL().get(1).getVuelo().getItinerario().getHoraLlegada() + "," + reserva.getVueloReservaL().get(1).getVuelo().getAvion().getCodigoAvion() + "," + String.valueOf((int) (Math.random() * 20)));
+                                        
+                                        //escritura archivo pagos.txt
+                                        int num1 = (int) (Math.random() * 9);
+                                        int num2 = (int) (Math.random() * 9);
+                                        int num3 = (int) (Math.random() * 9);
+                                        int num4 = (int) (Math.random() * 9);
+                                        String idPago = String.valueOf(num1) + String.valueOf(num2) + String.valueOf(num3) + String.valueOf(num4);
+                                        manejoArchivos.ManejoArchivos.EscribirArchivo("pagos.txt", idPago + "," + reserva.getCodigoReserva() + "," + reserva.getPrecioMillasTotal() + ",M");
                                     }
+                                    
                                 }
 
                             } else {
@@ -344,6 +361,14 @@ public class Sistema {
                                     //escritura archivo consultarReservas.txt
                                     manejoArchivos.ManejoArchivos.EscribirArchivo("consultarReserva.txt", reserva.getCliente().getNombres() + "," + reserva.getCliente().getCedula() + "," + reserva.getVueloReservaL().get(0).getVuelo().getCodigoVuelo() + "," + reserva.getVueloReservaL().get(0).getVuelo().getItinerario().getHoraSalida() + "," + reserva.getVueloReservaL().get(0).getVuelo().getItinerario().getHoraLlegada() + "," + reserva.getVueloReservaL().get(0).getVuelo().getAvion().getCodigoAvion() + "," + String.valueOf((int) (Math.random() * 20)));
                                     manejoArchivos.ManejoArchivos.EscribirArchivo("consultarReserva.txt", reserva.getCliente().getNombres() + "," + reserva.getCliente().getCedula() + "," + reserva.getVueloReservaL().get(1).getVuelo().getCodigoVuelo() + "," + reserva.getVueloReservaL().get(1).getVuelo().getItinerario().getHoraSalida() + "," + reserva.getVueloReservaL().get(1).getVuelo().getItinerario().getHoraLlegada() + "," + reserva.getVueloReservaL().get(1).getVuelo().getAvion().getCodigoAvion() + "," + String.valueOf((int) (Math.random() * 20)));
+                                    
+                                    //escritura archivo pagos.txt
+                                    int num1 = (int) (Math.random() * 9);
+                                    int num2 = (int) (Math.random() * 9);
+                                    int num3 = (int) (Math.random() * 9);
+                                    int num4 = (int) (Math.random() * 9);
+                                    String idPago = String.valueOf(num1) + String.valueOf(num2) + String.valueOf(num3) + String.valueOf(num4);
+                                    manejoArchivos.ManejoArchivos.EscribirArchivo("pagos.txt", idPago + "," + reserva.getCodigoReserva() + "," + String.format("%.2f", reserva.getPrecioSubtotal()) + ",TC");
                                 }
                             }
                         }
