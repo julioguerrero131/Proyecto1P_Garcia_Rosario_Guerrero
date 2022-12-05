@@ -21,6 +21,17 @@ public abstract class Usuario {
     protected String password;
     protected char rol;
 
+    /**
+     * Constructor que retorna un objeto de tipo Usuario
+     *
+     * @param cedula atributo propio de la clase Usuario
+     * @param nombres atributo propio de la clase Operador
+     * @param edad atributo propio de la clase Operador
+     * @param mail atributo propio de la clase Operador
+     * @param user atributo propio de la clase Operador
+     * @param password atributo propio de la clase Operador
+     * @param rol atributo propio de la clase Operador
+     */
     public Usuario(String cedula, String nombres, int edad, String mail, String user, String password, char rol) {
         this.cedula = cedula;
         this.nombres = nombres;
@@ -31,8 +42,17 @@ public abstract class Usuario {
         this.rol = rol;
     }
 
+    /**
+     * Este metodo abstracto retorna void y sirve para ser sobreescrito por las clases hijas 
+     * No recibe parametros
+     */
     public abstract void consultarReserva();
 
+    /**
+     * Este metodo retorna void 
+     * No recibe parametros
+     * Retorna la informacion del cliente
+     */
     public void ingresarDatosCliente() {
         System.out.println("");
         System.out.println("******************Paso 3*******************"); //PASO 3
@@ -46,17 +66,7 @@ public abstract class Usuario {
         System.out.println("Apellidos: " + nombreApellido[1]);
 
         System.out.println("Correo:" + this.getMail());
-//            String correo = sc.nextLine();
         int cont = 0;
-//            while (cont == 0) {
-//                if (correo.equals(this.getMail())) {
-//                    cont++;
-//                }
-//                if (cont == 0) {
-//                    System.out.println("Ingrese el correo con el que se regitró: ");
-//                    correo = sc.nextLine();
-//                }
-//            }
 
         System.out.println("Genero (1. Masculino - 2. Femenino):");
         String genero = sc.nextLine();
@@ -94,17 +104,6 @@ public abstract class Usuario {
         }
 
         System.out.println("Numero de Documento:" + this.getCedula());
-//            String numDocumento = sc.nextLine();
-//            cont = 0;
-//            while (cont == 0) {
-//                if (numDocumento.equals(this.getCedula())) {
-//                    cont++;
-//                }
-//                if (cont == 0) {
-//                    System.out.println("Ingrese su numero de documento :");
-//                    numDocumento = sc.nextLine();
-//                }
-//            }
     }
 
     public String getCedula() {

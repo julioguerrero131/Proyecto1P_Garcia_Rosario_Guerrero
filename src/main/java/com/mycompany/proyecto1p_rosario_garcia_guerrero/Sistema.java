@@ -36,6 +36,12 @@ public class Sistema {
 //    public static ArrayList<String> listaClientes = ManejoArchivos.LeeFichero("clientes.txt");
 //    public static ArrayList<String> listaOperadores = ManejoArchivos.LeeFichero("operadores.txt");
 //    public static ArrayList<Usuario>lista_usuarios= new ArrayList<>();
+    
+    /**ESte metodo sirve para ejecutar el programa
+     * 
+     * @param args 
+     * Retorna void
+     */
     public static void main(String[] args) {
         // TODO code application logic here
         cargarAsientos("asientos.txt");
@@ -52,6 +58,12 @@ public class Sistema {
     }
 
     //Comienzo carga de Archivos
+    
+    /**Este metodo retorna void 
+     * 
+     * @param archivoAsientos String necesario con la lectura del archivo
+     * Retorna una lista con los elementos del archivoAsientos
+     */
     public static void cargarAsientos(String archivoAsientos) {
         ArrayList<String> lineasAsientos = ManejoArchivos.LeeFichero(archivoAsientos);
 
@@ -62,6 +74,12 @@ public class Sistema {
         }
     }
 
+    /**Este metodo retorna void
+     * 
+     * @param archivoAviones String con la lectura del archivo
+     * Retorna lista con los elementos del archivoAviones
+     */
+    
     public static void cargarAviones(String archivoAviones) {
         ArrayList<String> lineasAvion = ManejoArchivos.LeeFichero(archivoAviones);
 
@@ -72,6 +90,11 @@ public class Sistema {
         }
     }
 
+    /** Este metodo retorna void
+     * 
+     * @param archivoItinerario String con la lectura del archivo
+     * Retorna lista con los elementos del archivoItinerario
+     */
     public static void cargarItinerarios(String archivoItinerario) {
         ArrayList<String> lineasItinerario = ManejoArchivos.LeeFichero(archivoItinerario);
 
@@ -91,6 +114,12 @@ public class Sistema {
 
     }
 
+    /**ESte metodo retorna void
+     * 
+     * @param archivoVuelos String con la lectura del archivo
+     * Retorna lista con los elementos del archivoVuelos
+     */
+    
     public static void cargarVuelos(String archivoVuelos) {
         ArrayList<String> lineasVuelo = ManejoArchivos.LeeFichero(archivoVuelos);
 
@@ -115,6 +144,13 @@ public class Sistema {
         }
     }
 
+    /** Este metodo retorna void
+     * 
+     * @param archivoUsuarios String con la lectura del archivo
+     * @param archivoClientes String con la lectura del archivo
+     * @param archivoOperadores  String con la lectura del archivo
+     * Retorna lista con los elementos de tipo Usuario
+     */
     public static void cargarUsuarios(String archivoUsuarios, String archivoClientes, String archivoOperadores) {
 
         ArrayList<String> lineasUsuario = ManejoArchivos.LeeFichero(archivoUsuarios);
@@ -155,12 +191,17 @@ public class Sistema {
 
         }
     }
+    
+    /**Este metodo retorna linea de texto de tipo String
+     * No recibe parametros
+     * @return String Devuelve el user ingresado por el Usuario
+     */
 
     //Metodos para iniciar Sesion
     public static String ingresoSesionUsuario() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Usuario: ");
-        String u = sc.nextLine().toLowerCase();
+        String u = sc.nextLine();
         return u;
     }
     
@@ -171,7 +212,7 @@ public class Sistema {
     public static String ingresoSesionContraseña() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Contraseña: ");
-        String p = sc.nextLine().toLowerCase();
+        String p = sc.nextLine();
         return p;
     }
     /**

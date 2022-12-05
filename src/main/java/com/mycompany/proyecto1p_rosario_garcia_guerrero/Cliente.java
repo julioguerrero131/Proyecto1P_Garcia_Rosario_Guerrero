@@ -8,25 +8,39 @@ public class Cliente extends Usuario {
 
     protected String numTarjeta;
 
+    /**
+     * Constructor que retorna un objeto de tipo Cliente
+     * 
+     * @param cedula atributo heredado de la clase Uusuario
+     * @param nombres atributo heredado de la clase Uusuario
+     * @param edad atributo heredado de la clase Uusuario
+     * @param mail atributo heredado de la clase Uusuario
+     * @param user atributo heredado de la clase Uusuario
+     * @param password atributo heredado de la clase Uusuario
+     * @param rol atributo heredado de la clase Uusuario
+     * @param numTarjeta atributo propio de la clase Cliente
+     */
     public Cliente(String cedula, String nombres, int edad, String mail, String user, String password, char rol, String numTarjeta) {
         super(cedula, nombres, edad, mail, user, password, rol);
         this.numTarjeta = numTarjeta;
     }
 
-@Override
+    @Override
+
+    /**Este metodo retorna void 
+     * 
+     *No recibe parametros 
+     * Retorna las reservas con el formato indicado
+     */
     public void consultarReserva() {
         ArrayList<String> listaR = ManejoArchivos.LeeFichero("consultarReserva.txt");
 
-
-
-       for (String l : listaR) {
+        for (String l : listaR) {
             String[] lineasSeparadas = l.split(",");
             String nombres1 = lineasSeparadas[0];
             if (nombres1.equals(this.nombres)) {
 
-
-
-               System.out.println("Nombres: " + lineasSeparadas[0]);
+                System.out.println("Nombres: " + lineasSeparadas[0]);
                 System.out.println("Cedula: " + lineasSeparadas[1]);
                 System.out.println("Vuelo: " + lineasSeparadas[2]);
                 System.out.println("Hora Salida: " + lineasSeparadas[3]);
@@ -42,6 +56,11 @@ public class Cliente extends Usuario {
 //            }
         }
     }
+    
+    /** Este metodo retorna un objeto de tipo Reserva
+     * No recibe parametros
+     * @return Reserva Devuelve un objeto de tipo Reserva con la informacion seleccionada por el Cliente
+     */
 
     public Reserva hacerReserva() {
         ArrayList<VueloReserva> vuelosReservaL = new ArrayList();
@@ -191,6 +210,12 @@ public class Cliente extends Usuario {
 
         return reserva;
     }
+    
+    /**Este metodo retorna un objeto de tipo Rserva
+     * 
+     * @param reserva Objeto requerido para devolver un nuevo objeto
+     * @return Reserva Devuelve un objeto de tipo Reserva con la informacion de los asientos seleccionados
+     */
 
     public Reserva escogerAsientos(Reserva reserva) {
         System.out.println("");
@@ -216,6 +241,12 @@ public class Cliente extends Usuario {
         return reserva;
     }
 
+    /**Este metodo retorna void
+     * 
+     * @param reserva Objeto requerido para devolver void
+     * Retorna la informacion del pago
+     */
+    
     public void hacerPago(Reserva reserva) {
         Scanner sc = new Scanner(System.in);
 

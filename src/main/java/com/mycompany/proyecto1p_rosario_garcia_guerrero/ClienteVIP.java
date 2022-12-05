@@ -8,13 +8,37 @@ public class ClienteVIP extends Cliente {
     private String tipoVIP;
     protected int millas;
 
+    /**
+     * Constructor que retorna un objeto de tipo ClienteVIP
+     * 
+     * @param cedula atributo heredado de la clase Cliente
+     * @param nombres atributo heredado de la clase Cliente
+     * @param edad atributo heredado de la clase Cliente
+     * @param mail atributo heredado de la clase Cliente
+     * @param user atributo heredado de la clase Cliente
+     * @param password atributo heredado de la clase Cliente
+     * @param rol atributo heredado de la clase Cliente
+     * @param numTarjeta atributo heredado de la clase Cliente
+     * @param tipoVIP atributo propio de la clase ClienteVIP
+     * @param millas atributo propio de la clase ClienteVIP
+     */
+    
     public ClienteVIP(String cedula, String nombres, int edad, String mail, String user, String password, char rol, String numTarjeta, String tipoVIP, int millas) {
         super(cedula, nombres, edad, mail, user, password, rol, numTarjeta);
         this.tipoVIP = tipoVIP;
         this.millas = millas;
     }
+
+
+    /**
+     * ESte metodo retorna la linea de texto en formato String
+     * 
+     * @param reserva Objeto requerido para devolver String
+     * @param millasCliente numero requerido para devolver String
+     * @return String devuelve informacion acerca del pago
+     */
     
- 
+
     public String hacerPago(Reserva reserva, int millasCliente) {
         Scanner sc = new Scanner(System.in);
 
@@ -39,9 +63,9 @@ public class ClienteVIP extends Cliente {
         }
 
         double iva = subtotal * 0.12;
-        System.out.println("IVA: " + iva);
+        System.out.println(String.format("IVA: %.2f", iva));
         double total = subtotal + iva;
-        System.out.println("TOTAL A PAGAR: " + total);
+        System.out.println(String.format("TOTAL A PAGAR: %.2f", total));
 
         System.out.println("");
         System.out.println("Forma de Pago: ");

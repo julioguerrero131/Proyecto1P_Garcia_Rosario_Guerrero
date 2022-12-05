@@ -29,31 +29,45 @@ public class Avion {
         }
     }
 
-
+    /**
+     * @return getCodigoAvion
+     */
     public String getCodigoAvion() {
         return codigoAvion;
     }
-
+    /**
+     * @param codigoAvion, String
+     */
     public void setCodigoAvion(String codigoAvion) {
         this.codigoAvion = codigoAvion;
     }
-
+/**
+ * @return capacidad
+ */
     public int getCapacidad() {
         return capacidad;
     }
-
+/**
+ * @param capacidad, int
+ */
     public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
     }
-
+/**
+ * @return ArrayList Asiento 
+ */
     public ArrayList<Asiento> getAsientosAvion() {
         return asientosAvion;
     }
-
+/**
+ * @param asientosAvion, ArrayList Asiento 
+ */
     public void setAsientosAvion(ArrayList<Asiento> asientosAvion) {
         this.asientosAvion = asientosAvion;
     }
-
+/**
+ * @return String 
+ */
     @Override
     public String toString() {
         return "Avion{" + "codigoAvion=" + codigoAvion + ", capacidad=" + capacidad + ", asientosAvion=" + asientosAvion + '}';
