@@ -45,8 +45,10 @@ public class Sistema {
         cargarUsuarios("usuarios.txt", "clientes.txt", "operadores.txt");
 
         Usuario usuario = iniciarSesion();
-        mostrarMenu(usuario);
-
+        boolean fin = false;
+        while (fin == false) {
+            fin = mostrarMenu(usuario);
+        }
     }
 
     //Comienzo carga de Archivos
@@ -220,47 +222,134 @@ public class Sistema {
     }
 
     //menu
-    public static void mostrarMenu(Usuario usuario) {
+    public static boolean mostrarMenu(Usuario usuario) {
         Scanner sc = new Scanner(System.in);
-        String var = "inicio";
-        while (!var.equals("fin")) {
-            if (usuario.getRol() == 'O') {
-                Operador operador = (Operador) usuario;
-                int opcion = mostrarMenuOperador(); //acciones del operador
-                if (opcion == 1) {
-                    operador.consultarUsuario();
-                } else if (opcion == 2) {
-                    operador.consultarReserva();
-                } else if (opcion == 3) {
-                    var = "fin";
+
+        if (usuario.getRol() == 'O') {
+            Operador operador = (Operador) usuario;
+            int opcion = mostrarMenuOperador(); //acciones del operador
+            if (opcion == 1) {
+                operador.consultarUsuario();
+            } else if (opcion == 2) {
+                operador.consultarReserva();
+            } else if (opcion == 3) {
+                return true;
+            }
+
+        } else {
+            int opcion = mostrarMenuCliente(); //acciones de clientes
+            Cliente cliente = (Cliente) usuario;
+            if (opcion == 1) {
+
+                //Paso 1
+                Reserva reserva = cliente.hacerReserva(); // hace la reserva
+
+                System.out.println("¿Desea Continuar? (S/N)"); //quiere continuar?
+                String continuar = sc.nextLine().toLowerCase();
+                while (!(continuar.equals("s") || continuar.equals("n"))) {
+                    System.out.println("Opcion incorrecta.¿Estas seguro de pagar el vuelo (s/n)?. Recomendacion: Eliga una letra.");
+                    continuar = sc.nextLine().toLowerCase();
                 }
 
-            } else {
-                int opcion = mostrarMenuCliente(); //acciones de clientes
-                Cliente cliente = (Cliente) usuario;
-                if (opcion == 1) {
-                    //paso 1 y 2
-                    Reserva reserva = cliente.hacerReserva();
+                if (continuar.equals("s")) {
 
-                    //Paso 3
-                    usuario.ingresarDatosCliente();
-
-                    //Paso 4
-                    if (cliente instanceof ClienteVIP) {
-                        ClienteVIP clientevip = (ClienteVIP) cliente;
-                        clientevip.hacerPago(reserva, clientevip.getMillas());
-                    } else {
-                        cliente.hacerPago(reserva);
+                    //Paso 2
+                    reserva = cliente.escogerAsientos(reserva);
+                    System.out.println("¿Desea Continuar? (s/n)");
+                    continuar = sc.nextLine().toLowerCase();
+                    while (!(continuar.equals("s") || continuar.equals("n"))) {
+                        System.out.println("Opcion incorrecta.¿Estas seguro de pagar el vuelo (s/n)?. Recomendacion: Eliga una letra.");
+                        continuar = sc.nextLine().toLowerCase();
                     }
-                    System.out.println("Reserva finalizada");
-                } else if (opcion == 2) {
-                    cliente.consultarReserva();
-                } else if (opcion == 3) {
-                    var = "fin";
+
+                    if (continuar.equals("s") && reserva != null) {
+
+                        //Paso 3
+                        cliente.ingresarDatosCliente();
+                        System.out.println("");
+                        System.out.println("Desea guardar los datos del pasajero y continuar con el pago (s/n)? ");
+                        continuar = sc.nextLine().toLowerCase();
+                        while (!continuar.equals("s") && !continuar.equals("n")) { //validacion
+                            System.out.println("Opcion incorrecta. Desea guardar los datos del pasajero y continuar con el pago (s/n)? ");
+                            continuar = sc.nextLine().toLowerCase();
+                        }
+                        if (continuar.equals("s")) {
+                            System.out.println("Ha completado el paso 3");
+
+                            //Paso 4
+                            if (cliente instanceof ClienteVIP) {
+                                ClienteVIP clientevip = (ClienteVIP) cliente;
+
+                                String pago = clientevip.hacerPago(reserva, clientevip.getMillas()); //pago del cliente VIP
+                                while (pago.equals("millas insuficientes")) { //Se repite si no tiene millas suficientes
+                                    System.out.println("No posee millas suficientes. Intente con otro metodo de pago.");
+                                    pago = clientevip.hacerPago(reserva, clientevip.getMillas());
+                                }
+                                System.out.println("¿Estas seguro de pagar el vuelo (s/n) ? "); //validacion si quiere continuar
+                                String op = sc.nextLine().toLowerCase();
+                                while (!(op.equals("s") || op.equals("n"))) {
+                                    System.out.println("Opcion incorrecta.¿Estas seguro de pagar el vuelo (s/n)?. Recomendacion: Eliga una letra.");
+                                    op = sc.nextLine().toLowerCase();
+                                }
+                                if (op.equals("s")) {
+                                    System.out.println("Has comprado tu vuelo. El codigo de reserva es: " + reserva.getCodigoReserva());
+
+                                    if (pago.equals("pago hecho en tarjeta")) {
+                                        reserva.setPrecioSubtotal(reserva.getPrecioSubtotal() + (reserva.getPrecioSubtotal() * 0.1));//aumento del 10% por pago en tarjeta
+
+                                        //escritura archivo reservas.txt
+                                        String informacionida = (reserva.getCodigoReserva() + "," + String.valueOf(reserva.getVueloReservaL().get(0).getVuelo().getCodigoVuelo()) + "," + reserva.getCliente().nombres + "," + reserva.getFechaCompra() + "," + String.valueOf(reserva.getPrecioSubtotal()));
+                                        manejoArchivos.ManejoArchivos.EscribirArchivo("reservas.txt", informacionida);
+                                        String informacionret = (reserva.getCodigoReserva() + "," + String.valueOf(reserva.getVueloReservaL().get(1).getVuelo().getCodigoVuelo()) + "," + reserva.getCliente().nombres + "," + reserva.getFechaCompra() + "," + String.valueOf(reserva.getPrecioSubtotal()));
+                                        manejoArchivos.ManejoArchivos.EscribirArchivo("reservas.txt", informacionret);
+                                        listaReservas.add(reserva);
+
+                                    } else if (pago.equals("pago hecho en millas")) {
+                                        clientevip.setMillas(clientevip.getMillas() - reserva.getPrecioMillasTotal());
+                                        reserva.setCliente(clientevip);
+
+                                        //escritura archivo reservas.txt
+                                        String informacionida = (reserva.getCodigoReserva() + "," + String.valueOf(reserva.getVueloReservaL().get(0).getVuelo().getCodigoVuelo()) + "," + reserva.getCliente().nombres + "," + reserva.getFechaCompra() + "," + String.valueOf(reserva.getPrecioSubtotal()));
+                                        manejoArchivos.ManejoArchivos.EscribirArchivo("reservas.txt", informacionida);
+                                        String informacionret = (reserva.getCodigoReserva() + "," + String.valueOf(reserva.getVueloReservaL().get(1).getVuelo().getCodigoVuelo()) + "," + reserva.getCliente().nombres + "," + reserva.getFechaCompra() + "," + String.valueOf(reserva.getPrecioSubtotal()));
+                                        manejoArchivos.ManejoArchivos.EscribirArchivo("reservas.txt", informacionret);
+                                        listaReservas.add(reserva);
+                                    }
+                                }
+
+                            } else {
+                                cliente.hacerPago(reserva); //pago del cliente estandar
+                                System.out.println("¿Estas seguro de pagar el vuelo (s/n) ? ");
+                                String op = sc.nextLine().toLowerCase();
+                                while (!(op.equals("s") || op.equals("n"))) {
+                                    System.out.println("Opcion incorrecta.¿Estas seguro de pagar el vuelo (s/n)?. Recomendacion: Eliga una letra.");
+                                    op = sc.nextLine().toLowerCase();
+                                }
+                                if (op.equals("s")) {
+                                    System.out.println("Has comprado tu vuelo. El codigo de reserva es: " + reserva.getCodigoReserva());
+                                    reserva.setPrecioSubtotal(reserva.getPrecioSubtotal() + (reserva.getPrecioSubtotal() * 0.1));//aumento del 10% por pago en tarjeta
+
+                                    //escritura archivo reservas.txt
+                                    String informacionida = (reserva.getCodigoReserva() + "," + String.valueOf(reserva.getVueloReservaL().get(0).getVuelo().getCodigoVuelo()) + "," + reserva.getCliente().nombres + "," + reserva.getFechaCompra() + "," + String.valueOf(reserva.getPrecioSubtotal()));
+                                    manejoArchivos.ManejoArchivos.EscribirArchivo("reservas.txt", informacionida);
+                                    String informacionret = (reserva.getCodigoReserva() + "," + String.valueOf(reserva.getVueloReservaL().get(1).getVuelo().getCodigoVuelo()) + "," + reserva.getCliente().nombres + "," + reserva.getFechaCompra() + "," + String.valueOf(reserva.getPrecioSubtotal()));
+                                    manejoArchivos.ManejoArchivos.EscribirArchivo("reservas.txt", informacionret);
+                                    listaReservas.add(reserva);
+                                }
+                            }
+                        }
+                    }
                 }
+
+            } else if (opcion == 2) {
+                cliente.consultarReserva();
+            } else if (opcion == 3) {
+                return true;
             }
 
         }
+
+        return false;
     }
 
     public static int mostrarMenuCliente() {

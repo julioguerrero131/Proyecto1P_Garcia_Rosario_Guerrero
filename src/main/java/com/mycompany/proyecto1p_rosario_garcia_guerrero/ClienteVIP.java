@@ -14,7 +14,7 @@ public class ClienteVIP extends Cliente {
         this.millas = millas;
     }
 
-    public void hacerPago(Reserva reserva, int millasCliente) {
+    public String hacerPago(Reserva reserva, int millasCliente) {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("");
@@ -22,72 +22,51 @@ public class ClienteVIP extends Cliente {
         System.out.println("*****************************************");
         System.out.println("");
 
-        String op = "n";
-        while (op.equals("n")) {
-            System.out.println("--------------------------PAGO--------------------------");
-            System.out.println("");
-            System.out.println("Descripción:");
-            System.out.println("");
-            double subtotal = reserva.getPrecioSubtotal();
-            System.out.println("Subtotal: " + subtotal);
-            if (this.getTipoVIP().equals("GOLDEN PASS")) {
-                System.out.println("Descuento: 20% (cliente vip GOLDEN PASS)");
-                subtotal -= (subtotal * 0.2);
-            }
-            if (this.getTipoVIP().equals("PLATINUM PASS")) {
-                System.out.println("Descuento: 30% (cliente vip GOLDEN PASS)");
-                subtotal -= (subtotal * 0.3);
-            }
+        System.out.println("--------------------------PAGO--------------------------");
+        System.out.println("");
+        System.out.println("Descripción:");
+        System.out.println("");
+        double subtotal = reserva.getPrecioSubtotal();
+        System.out.println("Subtotal: " + subtotal);
+        if (this.getTipoVIP().equals("GOLDEN PASS")) {
+            System.out.println("Descuento: 20% (cliente vip GOLDEN PASS)");
+            subtotal -= (subtotal * 0.2);
+        }
+        if (this.getTipoVIP().equals("PLATINUM PASS")) {
+            System.out.println("Descuento: 30% (cliente vip GOLDEN PASS)");
+            subtotal -= (subtotal * 0.3);
+        }
 
-            double iva = subtotal * 0.12;
-            System.out.println("IVA: " + iva);
-            double total = subtotal + iva;
-            System.out.println("TOTAL A PAGAR: " + total);
+        double iva = subtotal * 0.12;
+        System.out.println("IVA: " + iva);
+        double total = subtotal + iva;
+        System.out.println("TOTAL A PAGAR: " + total);
 
-            System.out.println("");
-            System.out.println("Forma de Pago: ");
-            System.out.println("1. Tarjeta de Credito \n2. Millas");
-            System.out.println("");
-            System.out.println("Elije tu forma de pago: ");
-            String fp = sc.nextLine();
+        System.out.println("");
+        System.out.println("Forma de Pago: ");
+        System.out.println("1. Tarjeta de Credito \n2. Millas");
+        System.out.println("");
+        System.out.println("Elije tu forma de pago: ");
+        String fp = sc.nextLine();
 
-            if (fp.equals("1")) {
+        if (fp.equals("1")) {
+            System.out.println("Ingrese su tarjeta de credito: ");
+            String t = sc.nextLine();
+            while (!this.getNumTarjeta().equals(t)) {
+                System.out.println("Tarjeta Incorrecta.");
                 System.out.println("Ingrese su tarjeta de credito: ");
-                String t = sc.nextLine();
-                while (!this.getNumTarjeta().equals(t)) {
-                    System.out.println("Tarjeta Incorrecta.");
-                    System.out.println("Ingrese su tarjeta de credito: ");
-                    t = sc.nextLine();
-                }
-                System.out.println("¿Estas seguro de pagar el vuelo (s/n) ? ");
-                op = sc.nextLine().toLowerCase();
-                while (!(op.equals("s") || op.equals("n"))) {
-                    System.out.println("Opcion incorrecta.¿Estas seguro de pagar el vuelo (s/n)?. Recomendacion: Eliga una letra.");
-                    op = sc.nextLine().toLowerCase();
-                }
-                if (op.equals("s")) {
-                    System.out.println("Has comprado tu vuelo. El codigo de reserva es: " + reserva.getCodigoReserva());
-                    reserva.setPrecioSubtotal(reserva.getPrecioSubtotal() + (reserva.getPrecioSubtotal() * 0.1));//aumento del 10% por pago en tarjeta
-                }
-            } else if (fp.equals("2")) {
-                if (millasCliente >= reserva.getPrecioMillasTotal()) {
-                    this.setMillas(millasCliente - reserva.getPrecioMillasTotal());
-                    System.out.println("¿Estas seguro de pagar el vuelo (s/n) ? ");
-                    op = sc.nextLine().toLowerCase();
-                    while (!(op.equals("s") || op.equals("n"))) {
-                        System.out.println("Opcion incorrecta.¿Estas seguro de pagar el vuelo (s/n)?. Recomendacion: Eliga una letra.");
-                        op = sc.nextLine().toLowerCase();
-                    }
-                    if (op.equals("s")) {
-                        System.out.println("Has comprado tu vuelo. El codigo de reserva es: " + reserva.getCodigoReserva());
-                        reserva.setPrecioSubtotal(reserva.getPrecioSubtotal() + (reserva.getPrecioSubtotal() * 0.1));//aumento del 10% por pago en tarjeta
-                    }
-                } else {
-                    op = "n";
-                    System.out.println("No posee millas Suficientes. Intente de nuevo.");
-                }
+                t = sc.nextLine();
+            }
+            return "pago hecho en tarjeta";
+        } else if (fp.equals("2")) {
+            if (millasCliente >= reserva.getPrecioMillasTotal()) {
+                return "pago hecho en milllas";
+            } else {
+                System.out.println("No posee millas Suficientes. Intente de nuevo.");
             }
         }
+
+        return "millas insuficientes";
     }
 
     public String getTipoVIP() {

@@ -40,17 +40,14 @@ public abstract class Usuario {
         System.out.println("");
 
         Scanner sc = new Scanner(System.in);
-        String continuar = "s";
-        //(continuar.equals("n")) {
-        if (continuar.equals("s")) {
-            System.out.println("-------------------------DATOS PASAJERO---------------------------");
-            String[] nombreApellido = this.getNombres().split(" ");
-            System.out.println("Nombres: " + nombreApellido[0]);
-            System.out.println("Apellidos: " + nombreApellido[1]);
+        System.out.println("-------------------------DATOS PASAJERO---------------------------");
+        String[] nombreApellido = this.getNombres().split(" ");
+        System.out.println("Nombres: " + nombreApellido[0]);
+        System.out.println("Apellidos: " + nombreApellido[1]);
 
-            System.out.println("Correo:" + this.getMail());
+        System.out.println("Correo:" + this.getMail());
 //            String correo = sc.nextLine();
-            int cont = 0;
+        int cont = 0;
 //            while (cont == 0) {
 //                if (correo.equals(this.getMail())) {
 //                    cont++;
@@ -61,42 +58,42 @@ public abstract class Usuario {
 //                }
 //            }
 
-            System.out.println("Genero (1. Masculino - 2. Femenino):");
-            String genero = sc.nextLine();
-            cont = 0;
-            while (cont == 0) {
-                if (genero.equals("1")) {
-                    cont++;
-                }
-                if (genero.equals("2")) {
-                    cont++;
-                }
-                if (cont == 0) {
-                    System.out.println("Genero (1. Masculino - 2. Femenino). Ingrese el numero:");
-                    genero = sc.nextLine();
-                }
+        System.out.println("Genero (1. Masculino - 2. Femenino):");
+        String genero = sc.nextLine();
+        cont = 0;
+        while (cont == 0) {
+            if (genero.equals("1")) {
+                cont++;
             }
-
-            System.out.println("Nacionalidad:");
-            String nacionalidad = sc.nextLine();
-
-            System.out.println("Tipo de Documento (1. Cedula - 2. Pasaporte):");
-            String tipoDocumento = sc.nextLine();
-            cont = 0;
-            while (cont == 0) {
-                if (tipoDocumento.equals("1")) {
-                    cont++;
-                }
-                if (tipoDocumento.equals("2")) {
-                    cont++;
-                }
-                if (cont == 0) {
-                    System.out.println("Tipo de Documento (1. Cedula - 2. Pasaporte). Ingrese el numero:");
-                    genero = sc.nextLine();
-                }
+            if (genero.equals("2")) {
+                cont++;
             }
+            if (cont == 0) {
+                System.out.println("Genero (1. Masculino - 2. Femenino). Ingrese el numero:");
+                genero = sc.nextLine();
+            }
+        }
 
-            System.out.println("Numero de Documento:" + this.getCedula());
+        System.out.println("Nacionalidad:");
+        String nacionalidad = sc.nextLine();
+
+        System.out.println("Tipo de Documento (1. Cedula - 2. Pasaporte):");
+        String tipoDocumento = sc.nextLine();
+        cont = 0;
+        while (cont == 0) {
+            if (tipoDocumento.equals("1")) {
+                cont++;
+            }
+            if (tipoDocumento.equals("2")) {
+                cont++;
+            }
+            if (cont == 0) {
+                System.out.println("Tipo de Documento (1. Cedula - 2. Pasaporte). Ingrese el numero:");
+                genero = sc.nextLine();
+            }
+        }
+
+        System.out.println("Numero de Documento:" + this.getCedula());
 //            String numDocumento = sc.nextLine();
 //            cont = 0;
 //            while (cont == 0) {
@@ -108,19 +105,6 @@ public abstract class Usuario {
 //                    numDocumento = sc.nextLine();
 //                }
 //            }
-
-            System.out.println("");
-            System.out.println("Desea guardar los datos del pasajero y continuar con el pago (s/n)? ");
-            continuar = sc.nextLine().toLowerCase();
-            while (!continuar.equals("s") && !continuar.equals("n")) { //validacion
-                System.out.println("Opcion incorrecta. Desea guardar los datos del pasajero y continuar con el pago (s/n)? ");
-                continuar = sc.nextLine().toLowerCase();
-            }
-            if (continuar.equals("n")) {
-                Sistema.mostrarMenu(this);
-            }
-        }
-        System.out.println("Ha completado el paso 3");
     }
 
     public String getCedula() {
